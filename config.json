@@ -1,1 +1,1 @@
-{"hosts-path":"\/etc\/hosts","vhost-path":"\/etc\/apache\/extra\/httpd-vhosts.conf","projects-path":["\/Projects"]}
+{"hosts-path":"\/etc\/hosts","vhost-path":"\/etc\/apache\/extra\/httpd-vhosts.conf","projects-path":["\/Projects","\/Projects\/Github"]}

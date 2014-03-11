@@ -27,8 +27,10 @@ class Config extends LocalHosterFile {
 	public function save($data=array()) {
 		$file = $this->getConfigFilePath();
 		if(!is_writable( $file ) ) {
+			echo 'not writable';
 			return false;
 		}
+		echo 'good';
 
 		$fh = file_put_contents($this->getConfigFilePath(), json_encode($data) );
 
