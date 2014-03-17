@@ -23,5 +23,6 @@
  * 127.0.0.1   local.projectname.com
  *
  */
+
 $content = 'includes/etc-hosts.php';
 include('includes/layout.php');
