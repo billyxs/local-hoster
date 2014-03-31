@@ -29,6 +29,11 @@ class Config extends LocalHosterFile {
 
 	public function save($data=array()) {
 		$file = $this->getConfigFilePath();
+		if(empty($data)) {
+			echo 'data is empty';
+			return;
+		}
+
 		if(!is_writable( $file ) ) {
 			echo 'not writable';
 			return false;

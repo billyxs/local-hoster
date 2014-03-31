@@ -8,7 +8,7 @@ if(isset($_REQUEST['data']) ) {
 
 	$_REQUEST['data']['id'] = count( $Config->data['projects'] );
 	$Config->data['projects'][] = $_REQUEST['data'];
-	$Config->save();
+	$Config->save($Config->data);
 }
 
 ?>

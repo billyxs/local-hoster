@@ -1,16 +1,22 @@
 {
     "hosts-path": "/etc/hosts",
+    "projects": [
+        {
+            "id": 0,
+            "project-name": "Local Hoster",
+            "project-path": "/Users/montgomeryb/Projects/LocalHoster",
+            "server-name": "local.hoster.com"
+        },
+        {
+            "id": 1,
+            "project-name": "Project 2",
+            "project-path": "/Users/montgomeryb/Projects/",
+            "server-name": "local.project2.com"
+        }
+    ],
     "projects-path": [
         "/Users/montgomeryb/Projects/",
         "/Users/montgomeryb/Projects/Github"
     ],
-    "vhost-path": "/etc/apache/extra/httpd-vhosts.conf",
-    "projects":[
-    	{
-    		"id":"0",
-    		"project-name":"Local Hoster",
-    		"server-name":"local.hoster.com",
-    		"project-path":"/Users/montgomeryb/Projects/LocalHoster"
-    	}
-    ]
+    "vhost-path": "/etc/apache/extra/httpd-vhosts.conf"
 }
