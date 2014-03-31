@@ -27,6 +27,33 @@ class Config extends LocalHosterFile {
 		return $_SERVER['DOCUMENT_ROOT'] . '/' . self::CONFIG_FILE_PATH;
 	}
 
+	public function deleteProject($id) {
+		foreach($this->data['projects'] as $key=>$project) {
+			if($project['id'] == $id) {
+				unset( $this->data['projects'][$key] );
+			}
+		}
+	}
+
+	public function addProject ($values=array()) {
+		// $Config->data['projects'][] = $_REQUEST['data'];
+
+		if(!isset($_REQUEST['data']['id'])) {
+			$values['id'] = count( $this->data['projects'] );
+			$this->data['projects'][] = $values;
+		} else {
+			$values['id']	= intval($values['id']);
+			foreach($this->data['projects'] as $key=>$project) {
+				if($project['id'] == $values['id']) {
+					$this->data['projects'][$key] = $values;
+				}
+			}
+		}
+
+
+
+	}
+
 	public function save($data=array()) {
 		$file = $this->getConfigFilePath();
 		if(empty($data)) {
