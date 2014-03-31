@@ -18,7 +18,6 @@ abstract class LocalHosterFile {
 		} else {
 			$this->filePath = $this->getSystemDefaultFilePath();
 		}
-
 	}
 
 	public function setFilePath($filePath) {

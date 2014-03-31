@@ -1,1 +1,16 @@
-{"hosts-path":"\/etc\/hosts","vhost-path":"\/etc\/apache\/extra\/httpd-vhosts.conf","projects-path":["\/Projects","\/Projects\/Github"]}
+{
+    "hosts-path": "/etc/hosts",
+    "projects-path": [
+        "/Users/montgomeryb/Projects/",
+        "/Users/montgomeryb/Projects/Github"
+    ],
+    "vhost-path": "/etc/apache/extra/httpd-vhosts.conf",
+    "projects":[
+    	{
+    		"id":"0",
+    		"project-name":"Local Hoster",
+    		"server-name":"local.hoster.com",
+    		"project-path":"/Users/montgomeryb/Projects/LocalHoster"
+    	}
+    ]
+}

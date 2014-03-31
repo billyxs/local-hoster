@@ -14,9 +14,12 @@ class Config extends LocalHosterFile {
 	// projects folder path
 	protected $projectsPath = array();
 
-	protected $data = array();
+	public $data = array();
 
-	public function getConfigFile() {
+	public function __construct($values=array()) {
+		$values['filePath'] = $this->getConfigFilePath();
+		parent::__construct($values);
+
 		$this->setConfig();
 	}
 
@@ -37,6 +40,7 @@ class Config extends LocalHosterFile {
 	}
 
 	private function setConfig() {
+
 		if( !$this->exists() ) {
 			return;
 		}
