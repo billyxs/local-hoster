@@ -39,7 +39,7 @@ class Config extends LocalHosterFile {
 		// $Config->data['projects'][] = $_REQUEST['data'];
 
 		if(!isset($_REQUEST['data']['id'])) {
-			$values['id'] = count( $this->data['projects'] );
+			$values['id'] = $this->getNextProjectId();
 			$this->data['projects'][] = $values;
 		} else {
 			$values['id']	= intval($values['id']);
@@ -49,9 +49,22 @@ class Config extends LocalHosterFile {
 				}
 			}
 		}
+	}
 
-
-
+	private function getNextProjectId() {
+		$ids = array();
+		foreach($this->data['projects'] as $key=>$project) {
+			if(isset($project['id']) ) {
+				$pid = $project['id'];
+				$ids[$pid] = $pid;
+			}
+		}
+		$nextId = count( $this->data['projects'] );
+		while($ids[$nextId]) {
+			$nextId++;
+		}
+		echo 'next id ' . $nextId;
+		return $nextId;
 	}
 
 	public function save($data=array()) {
@@ -67,6 +80,7 @@ class Config extends LocalHosterFile {
 		}
 		echo 'good';
 
+		$this->data = $data;
 		$fh = file_put_contents($this->getConfigFilePath(), json_encode($data) );
 
 	}

@@ -7,5 +7,5 @@ if( isset($_REQUEST['data']) ) {
 	$result = $Config->save( $_REQUEST['data']['Config'] );
 }
 
-$content = 'includes/edit-config.php';
-include('includes/layout.php');
+$content = 'includes/nextgen/edit-config.php';
+include('includes/nextgen/layout.php');
