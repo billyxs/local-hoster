@@ -9,6 +9,11 @@ class Vhosts extends LocalHosterFile {
 
 	protected $fileHandle = null;
 
+	public function __construct($values=array()) {
+		parent::__construct($values);
+		$this->filePath = $this->getSystemDefaultFilePath();
+	}
+
 	public function addDomainBatch($values = array() ) {
 		if(empty($values)) {
 			return;
@@ -18,6 +23,45 @@ class Vhosts extends LocalHosterFile {
 			$this->addDomain($project);
 		}
 
+	}
+
+	public function findAllVhosts() {
+		$vhosts = array();
+
+		// Open file
+		$handle = fopen($this->filePath, 'r');
+		if ($handle) {
+			// loop through file and create an array from each line of text
+			$currentVhost = false;
+		  while (!feof($handle)) {
+       $line = trim(fgets($handle, 4096) );
+
+       if(substr($line, 0, 14) === '</VirtualHost>') {
+       	if(is_array($currentVhost)) {
+       		array_push($vhosts, $currentVhost);
+       	}
+				$currentVhost = false;
+       }
+
+       if(is_array($currentVhost) ) {
+				if(substr($line, 0, 12) === 'DocumentRoot') {
+					$currentVhost['DocumentRoot'] = trim( preg_replace(array('/DocumentRoot/', '/"/'), "", $line) );
+				}
+
+				if(substr($line, 0, 10) === 'ServerName') {
+					$currentVhost['ServerName'] = trim( str_replace('ServerName', '', $line) );
+				}
+       }
+
+       // Start a vhost entry
+       if(substr($line, 0, 12) === '<VirtualHost') {
+       	$currentVhost = array();
+       }
+		  }
+		  fclose($handle);
+		}
+
+		return $vhosts;
 	}
 
 	public function addDomain($values=array()) {

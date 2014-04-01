@@ -3,7 +3,6 @@ require_once('LocalHosterFile.class.php');
 
 class Hosts extends LocalHosterFile {
 	// File path of system hosts file
-	protected $filePath = '';
 
 	protected $templateFilename = 'hosts.txt';
 
@@ -13,6 +12,7 @@ class Hosts extends LocalHosterFile {
 
 	public function __construct($values=array()) {
 		parent::__construct($values);
+		$this->filePath = $this->getSystemDefaultFilePath();
 	}
 
 	public function addDomainBatch($values = array() ) {
@@ -23,6 +23,37 @@ class Hosts extends LocalHosterFile {
 		foreach($values as $key=>$project) {
 			$this->addDomain($project);
 		}
+
+	}
+
+	public function getAllHosts() {
+		$hosts = array();
+
+		// Open file
+		$handle = fopen($this->filePath, 'r');
+		if ($handle) {
+			// loop through file and create an array from each line of text
+		  while (!feof($handle)) {
+		       $lines[] = fgets($handle, 4096);
+		  }
+		  fclose($handle);
+		}
+
+		// loop through the lines of text in file
+		foreach($lines as $key=>$val) {
+			// explode the text on the tab separation
+			$line = preg_split("/[\s,]+/", $val);
+			$line = array_diff($line, array(""));
+
+			if(is_array($line)) {
+				if(strpos($line[0], '127.0.0.1') === false ) {
+				} else {
+					$hosts[ $line[1] ] = $line[0];
+				}
+			}
+		}
+
+		return $hosts;
 
 	}
 
