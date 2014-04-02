@@ -17,11 +17,11 @@
 
 	<div class="form-group">
 		<label>Project Name</label>
-		<input type="text" name="data[project-name]" value="<?php echo $project['project-name'] ?>" class="form-control" placeholder="Project Name">
+		<input type="text" name="data[Name]" value="<?php echo $project['Name'] ?>" class="form-control" placeholder="Project Name">
 	</div>
 	<div class="form-group">
 		<label>Host Name</label>
-		<input type="text" name="data[server-name]" value="<?php echo $project['server-name'] ?>"  class="form-control" placeholder="local.project.com">
+		<input type="text" name="data[ServerName]" value="<?php echo $project['ServerName'] ?>"  class="form-control" placeholder="local.project.com">
 	</div>
 
 	<div class="form-group">
@@ -38,7 +38,7 @@
 			}
 			?>
 		</select>
-		<input type="text" class="form-control" value="<?php echo $project['project-path'] ?>"  name="data[project-path]" id="projectPath" />
+		<input type="text" class="form-control" value="<?php echo $project['DocumentRoot'] ?>"  name="data[DocumentRoot]" id="projectPath" />
 	</div>
 
 	<button type="submit" name="data[submit]" class="btn btn-default"><?php echo $buttonText; ?> Project</button>
