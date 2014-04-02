@@ -30,9 +30,9 @@ if(isset($_REQUEST['data']) ) {
 		if($value === "yes") {
 			$addProject = $projects[$key];
 			$Config->addProject(array(
-					'project-name'=>$addProject['ServerName'],
-					'project-path'=>$addProject['DocumentRoot'],
-					'server-name'=>$addProject['ServerName'],
+					'Name'=>$addProject['ServerName'],
+					'DocumentRoot'=>$addProject['DocumentRoot'],
+					'ServerName'=>$addProject['ServerName'],
 				));
 		}
 	}
