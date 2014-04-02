@@ -26,7 +26,7 @@ class Hosts extends LocalHosterFile {
 
 	}
 
-	public function getAllHosts() {
+	public function findAllHosts() {
 		$hosts = array();
 
 		// Open file
