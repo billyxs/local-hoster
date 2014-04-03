@@ -1,6 +1,4 @@
 <?php
-require_once('LocalHosterFile.class.php');
-
 /**
  * Config Class
  * Configuration settings for Local Hoster

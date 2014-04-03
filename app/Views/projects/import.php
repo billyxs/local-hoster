@@ -1,44 +1,3 @@
-<?php
-
-$Hosts = new Hosts();
-$hosts = $Hosts->findAllHosts();
-
-$Vhosts = new Vhosts();
-$vhosts = $Vhosts->findAllVhosts();
-
-$projects = array();
-foreach($vhosts as $key=>$values) {
-	if(isset($values['ServerName']) ) {
-
-		$ServerName = $values['ServerName'];
-
-		if( isset($hosts[$ServerName] ) ) {
-			$vhosts[$key]['ip'] = $hosts[$ServerName];
-			$projects[$ServerName] = $vhosts[$key];
-		}
-	}
-}
-
-if(isset($_REQUEST['data']) ) {
-	$Config = new Config();
-	$data = $_REQUEST['data'];
-
-	foreach($data as $key=>$value) {
-		if($value === "yes") {
-			$addProject = $projects[$key];
-			$Config->addProject(array(
-					'Name'=>$addProject['ServerName'],
-					'DocumentRoot'=>$addProject['DocumentRoot'],
-					'ServerName'=>$addProject['ServerName'],
-				));
-		}
-	}
-
-	$Config->save($Config->data);
-}
-
-?>
-
 <form method="POST">
 	<button class="btn btn-danger">Run Import</button>
 	<table class="table">
@@ -52,7 +11,7 @@ if(isset($_REQUEST['data']) ) {
 		</thead>
 		<tbody>
 	<?php
-	foreach($projects as $key=>$values) {
+	foreach($Controller->projects as $key=>$values) {
 	?>
 		<tr>
 			<td class="form-control">

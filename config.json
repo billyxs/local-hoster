@@ -12,6 +12,12 @@
             "Name": "local.viggle-dist.com",
             "ServerName": "local.viggle-dist.com",
             "id": 2
+        },
+        "3": {
+            "DocumentRoot": "/Users/montgomeryb/Projects/Telescope/http/Clients/Viggle/ViggleLive/trunk/dist",
+            "Name": "local.viggle-dist.com",
+            "ServerName": "local.viggle-dist.com",
+            "id": 3
         }
     },
     "projects-path": [

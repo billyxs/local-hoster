@@ -1,10 +1,8 @@
 <?php
-require_once('LocalHosterFile.class.php');
-
 class Settings extends LocalHosterFile {
 
 	// Config file name
-	const FILENAME ='.lh-settings';
+	const FILENAME = '.lh-settings';
 
 	public function __construct($values=array()) {
 		parent::__construct($values);

@@ -1,6 +1,4 @@
 <?php
-require_once('LocalHosterFile.class.php');
-
 class Vhosts extends LocalHosterFile {
 	// File path of system hosts file
 	protected $filePath = '';
