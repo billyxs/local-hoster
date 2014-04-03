@@ -24,5 +24,5 @@
  *
  */
 
-$content = 'includes/nextgen/etc-hosts.php';
-include('includes/nextgen/layout.php');
+$content = 'views/etc-hosts.php';
+include('views/layout.php');

@@ -1,2 +1,2 @@
 <?php
-header('Location: etc-hosts.php');
+header('Location: projects.php');

@@ -22,9 +22,9 @@ $tableKeys = array_keys($projects[0]);
 $projectPaths = $Config->data['projects-path'];
 
 if(isset($_REQUEST['id']) ) {
-	$content ='includes/nextgen/project-edit.php';
+	$content ='views/project-edit.php';
 } else {
-	$content = 'includes/nextgen/project-list.php';
+	$content = 'views/project-list.php';
 }
 
-include('includes/nextgen/layout.php');
+include('views/layout.php');

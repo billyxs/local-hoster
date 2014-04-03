@@ -1,3 +1,3 @@
 <?php
-$content = 'includes/nextgen/import.php';
-include('includes/nextgen/layout.php');
+$content = 'views/import.php';
+include('views/layout.php');

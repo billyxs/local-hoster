@@ -1,6 +1,6 @@
 <html>
 <head>
-	<link href="/css/bootstrap-3.1.0.min.css" rel="stylesheet" />
+	<link href="/assets/css/bootstrap-3.1.0.min.css" rel="stylesheet" />
 	<link href="/assets/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" />
 
 </head>
@@ -21,8 +21,33 @@
 		<footer>
 			<sub>Local Hoster 2014</sub>
 		</footer>
-		<hr />
 	</div>
+	<script src="/assets/js/jquery-1.11.0.min.js"></script>
+
+	<script type="text/javascript">
+		/**
+		 * Project Path
+		 */
+		var setProjectPath = function() {
+			console.log("select path");
+			var project = $('#selectProjectPath').val();
+			console.log(project);
+			$('#projectPath').val( project );
+		}
+
+		$('#projectPath').on('change', setProjectPath);
+
+
+		/**
+		 * Settings
+		 */
+	  $('#addFolder').click(function() {
+	    var project = $('.project-folder:last').clone();
+	    console.log(project);
+	    project.attr('name', 'data[ProjectPaths][]')
+	    $("#projectsGroup").append("<br />").append(project);
+	  });
+	</script>
 
 </body>
 </html>

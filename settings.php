@@ -15,5 +15,5 @@ if(isset($_REQUEST['data']) ) {
 }
 
 
-$content = 'includes/settings.php';
-include('includes/nextgen/layout.php');
+$content = 'views/settings.php';
+include('views/layout.php');
