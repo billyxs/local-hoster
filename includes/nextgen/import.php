@@ -1,7 +1,5 @@
 <?php
-require('Classes/Hosts.class.php');
-require('Classes/Vhosts.class.php');
-require('Classes/Config.class.php');
+require('autoloader.php');
 
 $Hosts = new Hosts();
 $hosts = $Hosts->findAllHosts();
