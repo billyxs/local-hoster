@@ -1,25 +1,29 @@
-<blockquote class="active">
-	<p>Your projects</p>
-</blockquote>
-<table class="table">
+<table class="table table-condensed">
 	<thead>
 		<tr>
-			<?php foreach($tableKeys as $key) {
+			<?php
+			$keys = array('ServerName', 'Name');
+			foreach($keys as $key) {
 				$name = ucwords( str_replace('-', ' ', $key) );
 				echo "<th>$name</th>";
 			}?>
-			<th>Edit</th>
-			<th>Delete</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach($projects as $project) { ?>
 			<tr>
-			<?php foreach($tableKeys as $key) {
-				echo "<td>$project[$key]</td>";
-			}?>
-			<td><a href="projects.php?id=<?php echo $project['id']; ?>" class="btn btn-success">Edit</a></form></td>
-			<td><form method="POST"><input type="hidden" name="delete_project_id" value="<?php echo $project['id']; ?>"><button class="btn btn-danger">Delete</button></form></td>
+			<?php foreach($keys as $key) { ?>
+				<td><?php echo $project[$key] ?></td>
+			<?php }?>
+			<td>
+				<form method="POST">
+					<a href="projects.php?id=<?php echo $project['id']; ?>" class="btn btn-success"><i class="fa fa-edit fa-lg"></i> Edit</a>
+
+					<input type="hidden" name="delete_project_id" value="<?php echo $project['id']; ?>" />
+					<button class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete</button>
+				</form>
+			</td>
 		</tr>
 		<?php }?>
 	</tbody>

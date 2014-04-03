@@ -77,4 +77,37 @@ abstract class LocalHosterFile {
 		return '';
 	}
 
+	protected function getFileLineValue($key, $line) {
+		if(substr($line, 0, strlen($key)) === $key)
+			return trim( preg_replace(array('/' . $key . '/', '/"/'), "", $line) );
+
+		return false;
+	}
+
+	protected function getFileContents($fileValues=array()) {
+		$data = array();
+		$bool = $this->exists();
+		if( $bool ) {
+			// Open file
+			$handle = fopen($this->filePath, 'r');
+			if ($handle) {
+				// loop through file and create an array from each line of text
+				$currentVhost = false;
+			  while (!feof($handle)) {
+	      	$line = trim(fgets($handle, 4096) );
+
+	      	foreach($fileValues as $key) {
+		       	if($keyResult = $this->getFileLineValue($key, $line) )
+		       		$data[$key] = $keyResult;
+	       	}
+			  }
+			  fclose($handle);
+
+			  $this->data = $data;
+			}
+		}
+
+		return $data;
+	}
+
 }

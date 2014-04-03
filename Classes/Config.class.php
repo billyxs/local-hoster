@@ -9,7 +9,7 @@ require_once('LocalHosterFile.class.php');
 class Config extends LocalHosterFile {
 
 	// Config file name
-	const CONFIG_FILE_PATH ='config.json';
+	const FILENAME ='config.json';
 
 	// projects folder path
 	protected $projectsPath = array();
@@ -24,7 +24,7 @@ class Config extends LocalHosterFile {
 	}
 
 	public function getConfigFilePath () {
-		return $_SERVER['DOCUMENT_ROOT'] . '/' . self::CONFIG_FILE_PATH;
+		return $_SERVER['DOCUMENT_ROOT'] . '/' . self::FILENAME;
 	}
 
 	public function deleteProject($id) {
@@ -35,6 +35,14 @@ class Config extends LocalHosterFile {
 		}
 	}
 
+	/*
+	 * addProject
+	 *
+	 * Adds an array as a project entry
+	 * TODO: Should add some validation
+	 *
+	 * @return (array) - Current Projects in memory
+	 */
 	public function addProject ($values=array()) {
 		// $Config->data['projects'][] = $_REQUEST['data'];
 
@@ -49,8 +57,17 @@ class Config extends LocalHosterFile {
 				}
 			}
 		}
+
+		return $this->data['projects'];
 	}
 
+	/*
+	 * getNextProjectId
+	 *
+	 * Finds an available id for the project
+	 *
+	 * @return (int)
+	 */
 	private function getNextProjectId() {
 		$ids = array();
 		foreach($this->data['projects'] as $key=>$project) {
@@ -67,6 +84,14 @@ class Config extends LocalHosterFile {
 		return $nextId;
 	}
 
+	/*
+	 * save
+	 *
+	 * save the array config data to file as JSON
+	 *
+	 * @param (array) data
+	 * @return (type)
+	 */
 	public function save($data=array()) {
 		$file = $this->getConfigFilePath();
 		if(empty($data)) {
@@ -78,13 +103,22 @@ class Config extends LocalHosterFile {
 			echo 'not writable';
 			return false;
 		}
-		echo 'good';
 
-		$this->data = $data;
+		// If data hasn't been sent in, save the object's stored data
+		if(!empty($data))
+			$data = $this->data;
 		$fh = file_put_contents($this->getConfigFilePath(), json_encode($data) );
 
+		return $fh;
 	}
 
+	/*
+	 * setConfig
+	 *
+	 * Pull data from file to set the object
+	 *
+	 * @return (array)
+	 */
 	private function setConfig() {
 
 		if( !$this->exists() ) {

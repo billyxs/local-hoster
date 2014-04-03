@@ -1,1 +1,22 @@
-{"hosts-path":"\/etc\/hosts","projects":{"0":{"DocumentRoot":"\/Users\/montgomeryb\/Projects\/LocalHoster","Name":"Local Hoster","ServerName":"local.hoster.com","id":0},"2":{"Name":"local.viggle-dist.com","DocumentRoot":"\/Users\/montgomeryb\/Projects\/Telescope\/http\/Clients\/Viggle\/ViggleLive\/trunk\/dist","ServerName":"local.viggle-dist.com","id":2},"3":{"Name":"local.viggle-design.com","DocumentRoot":"\/Users\/montgomeryb\/Projects\/Telescope\/http\/Clients\/Viggle\/ViggleLive\/branches\/design","ServerName":"local.viggle-design.com","id":3},"5":{"Name":"local.widget-base.votenow.tv","DocumentRoot":"\/Users\/montgomeryb\/Projects\/Telescope\/http\/Widget\/WidgetBase\/trunk","ServerName":"local.widget-base.votenow.tv","id":5},"6":{"Name":"local.widget-social.votenow.tv","DocumentRoot":"\/Users\/montgomeryb\/Projects\/Telescope\/http\/Widget\/Social\/trunk","ServerName":"local.widget-social.votenow.tv","id":4}},"projects-path":["\/Users\/montgomeryb\/Projects\/","\/Users\/montgomeryb\/Projects\/Github"],"vhost-path":"\/etc\/apache\/extra\/httpd-vhosts.conf"}
+{
+    "hosts-path": "/etc/hosts",
+    "projects": {
+        "0": {
+            "DocumentRoot": "/Users/montgomeryb/Projects/LocalHoster",
+            "Name": "Local Hoster",
+            "ServerName": "local.hoster.com",
+            "id": 0
+        },
+        "2": {
+            "DocumentRoot": "/Users/montgomeryb/Projects/Telescope/http/Clients/Viggle/ViggleLive/trunk/dist",
+            "Name": "local.viggle-dist.com",
+            "ServerName": "local.viggle-dist.com",
+            "id": 2
+        }
+    },
+    "projects-path": [
+        "/Users/montgomeryb/Projects/",
+        "/Users/montgomeryb/Projects/Github"
+    ],
+    "vhost-path": "/etc/apache/extra/httpd-vhosts.conf"
+}

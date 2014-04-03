@@ -1,25 +1,21 @@
 <html>
 <head>
 	<link href="/css/bootstrap-3.1.0.min.css" rel="stylesheet" />
-	<style>
-	a {
-		font-size: 20px;
-	}
-	</style>
+	<link href="/assets/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+
 </head>
 <body>
 
 	<div class="container">
 		<header>
-			<h2>Local Hoster</h2>
-			<hr />
-			<a href="project-domains.php" class="btn btn-primary bt-lg">Project Domains</a>
-			<a href="projects.php" class="btn btn-info bt-lg">Projects</a>
-			<a href="projects.php?id=add" class="btn btn-warning bt-lg">Add Project</a>
-			<a href="project-config.php" class="btn btn-success bt-lg">Project Config</a>
-			<a href="project-import.php" class="btn btn-default bt-lg">Project Import</a>
+			<h3>Local Hoster</h3>
+			<a href="projects.php" class="btn btn-primary bt-lg"><i class="fa fa-th-list fa-lg"></i> Projects</a>
+			<a href="projects.php?id=add" class="btn btn-success bt-lg"><i class="fa fa-plus fa-lg"></i> Add Project</a>
+			<a href="project-import.php" class="btn btn-info bt-lg"><i class="fa fa-upload fa-lg"></i> Project Import</a>
+			<a href="settings.php" class="btn btn-default bt-lg"><i class="fa fa-cog fa-lg"></i> Settings</a>
 		</header>
 		<hr />
+		<div></div>
 		<?php include( $content ) ?>
 		<hr />
 		<footer>

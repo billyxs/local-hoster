@@ -1,5 +1,5 @@
 <?php
-require('Classes/Config.class.php');
+require('autoloader.php');
 $Config = new Config();
 
 // Set project data
