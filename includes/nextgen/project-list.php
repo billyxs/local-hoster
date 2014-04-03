@@ -14,7 +14,16 @@
 		<?php foreach($projects as $project) { ?>
 			<tr>
 			<?php foreach($keys as $key) { ?>
-				<td><?php echo $project[$key] ?></td>
+				<td>
+					<?php
+						$output = $project[$key];
+						if($key == "ServerName") {?>
+							<h4><a href="<?php echo $output ?>"><?php echo $output ?></a></h4>
+						<?php } else{
+							echo $output;
+						}
+					?>
+				</td>
 			<?php }?>
 			<td>
 				<form method="POST">
