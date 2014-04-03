@@ -1,7 +1,7 @@
 <?php
-// Or, using an anonymous function as of PHP 5.3.0
+// Autoload Classes
 spl_autoload_register(function ($class) {
-    include 'Classes/' . $class . '.class.php';
+    require_once 'Classes/' . $class . '.class.php';
 });
 
-define(NL, "<br />");
+define(BR, "<br />");
