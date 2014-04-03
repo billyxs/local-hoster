@@ -1,5 +1,5 @@
 <?php
-class Core {
+class Core extends Base {
 	static $debug = false;
 
 	public static function autoload() {

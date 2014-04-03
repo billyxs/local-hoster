@@ -28,6 +28,9 @@ if(isset($_POST['data']) ) {
 }
 $Controller->$action($param);
 
+// If the controller sets the view, use it, otherwise use the named action
+$view = (isset($Controller->view)) ? $Controller->view : $action;
 
-$content = VIEW . $controller_view . DS . $action . '.php';
+
+$content = VIEW . $controller_view . DS . $view . '.php';
 include('app/Views/layouts/default.php');

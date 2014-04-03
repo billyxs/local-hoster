@@ -5,7 +5,7 @@ class ProjectsController extends Controller {
 		$Config = new Config();
 
 		$this->projects = $Config->data['projects'];
-		$this->tableKeys = array_keys($this->projects[0]);
+		$this->tableKeys = array_keys( array_slice($this->projects, 0, 1) );
 		$this->projectPaths = $Config->data['projects-path'];
 	}
 
@@ -15,7 +15,7 @@ class ProjectsController extends Controller {
 		$Config = new Config();
 
 		$projects = $Config->data['projects'];
-		$this->tableKeys = array_keys($this->projects[0]);
+		$this->tableKeys = array_keys( array_slice($projects, 0, 1) );
 		$this->projectPaths = $Config->data['projects-path'];
 
 		// save data
@@ -33,10 +33,17 @@ class ProjectsController extends Controller {
 		$this->projects = $projects;
 	}
 
-	public function deleteProject($id) {
+	public function delete($id) {
+
 		$Config = new Config();
 		$Config->deleteProject( $id );
 		$Config->save($Config->data);
+
+		// Load index values for view
+		// TODO: should find a better way to do this, maybe a redirect
+		$this->index();
+		// Set the view that is needed
+		$this->view = 'index';
 	}
 
 	public function import() {
@@ -62,9 +69,8 @@ class ProjectsController extends Controller {
 
 		if(isset($this->data) ) {
 			$Config = new Config();
-			$data = $_REQUEST['data'];
 
-			foreach($data as $key=>$value) {
+			foreach($this->data as $key=>$value) {
 				if($value === "yes") {
 					$addProject = $projects[$key];
 					$Config->addProject(array(
