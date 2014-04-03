@@ -12,12 +12,12 @@ define( WEB_ASSETS		, SERVER_ROOT . 'assets' . DS);
 
 define( APP_ROOT			, SERVER_ROOT . 'app' . DS);
 
-define( CLASSFILE 		, APP_ROOT . 'Classes' . DS);
+define( CORE 					, APP_ROOT . 'Core' . DS);
 define( CONTROLLER 		, APP_ROOT . 'Controllers' . DS);
 define( MODEL 				, APP_ROOT . 'Models' . DS);
 define( VIEW 					, APP_ROOT . 'Views' . DS);
 
-require_once(CLASSFILE . 'Core.class.php');
+require_once(CORE . 'Core.php');
 
 $Core = new Core();
 $Core->autoload();

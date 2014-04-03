@@ -35,7 +35,7 @@
 			$('#projectPath').val( project );
 		}
 
-		$('#projectPath').on('change', setProjectPath);
+		$('#selectProjectPath').on('change', setProjectPath);
 
 
 		/**

@@ -44,7 +44,7 @@ class Config extends LocalHosterFile {
 	public function addProject ($values=array()) {
 		// $Config->data['projects'][] = $_REQUEST['data'];
 
-		if(!isset($_REQUEST['data']['id'])) {
+		if(!isset($values['id'])) {
 			$values['id'] = $this->getNextProjectId();
 			$this->data['projects'][] = $values;
 		} else {

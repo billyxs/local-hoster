@@ -1,6 +1,15 @@
 <?php
+/**
+ * Project Controller Class
+ *
+ * Manage the CRUD of the Local Hoster Projects
+ */
 class ProjectsController extends Controller {
 
+	/**
+	 * index - Projects List with access to edit and delete each project
+	 *
+	 */
 	public function index() {
 		$Config = new Config();
 
@@ -9,6 +18,10 @@ class ProjectsController extends Controller {
 		$this->projectPaths = $Config->data['projects-path'];
 	}
 
+	/**
+	 * edit - Handles editing of a project, or adding a new project
+	 *
+	 */
 	public function edit($id) {
 		$this->id = is_numeric( $id ) ? intval($id) : null;
 
@@ -18,21 +31,28 @@ class ProjectsController extends Controller {
 		$this->tableKeys = array_keys( array_slice($projects, 0, 1) );
 		$this->projectPaths = $Config->data['projects-path'];
 
+		$this->config = $Config->data;
+
 		// save data
 		if(isset($this->data) ) {
-			$Config->addProject($_REQUEST['data']);
+			print_r($this->data);
+			$Config->addProject($this->data);
 			$Config->save($Config->data);
 		}
 
-		$this->buttonText = "Add";
-		if( is_int($id) && array_key_exists($id, $projects) ) {
+		if( array_key_exists($this->id, $projects) ) {
 			$this->project = $projects[$id];
-			$this->buttonText = "Edit";
 		}
 
 		$this->projects = $projects;
 	}
 
+
+	/**
+	 * delete - Delete project by id
+	 *
+	 * @param int - project id
+	 */
 	public function delete($id) {
 
 		$Config = new Config();
@@ -46,6 +66,14 @@ class ProjectsController extends Controller {
 		$this->view = 'index';
 	}
 
+
+	/**
+	 * import - Import existing projects for user
+	 *
+	 * Loops through hosts and vhosts files to to find existing
+	 * projects for user to allow them to import
+	 *
+	 */
 	public function import() {
 
 		$Hosts = new Hosts();
@@ -87,6 +115,11 @@ class ProjectsController extends Controller {
 		$this->projects = $projects;
 	}
 
+
+	/**
+	 * settings - Manage user settings for paths to hosts, vhosts, and projects
+	 *
+	 */
 	public function settings() {
 		$Settings = new Settings();
 		$Settings->load();
