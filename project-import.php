@@ -1,3 +1,3 @@
 <?php
-$content = 'views/import.php';
-include('views/layout.php');
+$content = 'app/Views/import.php';
+include('app/Views/layout.php');

@@ -1,5 +1,5 @@
 <?php
-require('autoloader.php');
+require('app/autoloader.php');
 $Settings = new Settings();
 $Settings->load();
 if(isset($_REQUEST['data']) ) {
@@ -15,5 +15,5 @@ if(isset($_REQUEST['data']) ) {
 }
 
 
-$content = 'views/settings.php';
-include('views/layout.php');
+$content = 'app/Views/settings.php';
+include('app/Views/layout.php');

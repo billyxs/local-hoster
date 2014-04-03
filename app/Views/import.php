@@ -1,5 +1,5 @@
 <?php
-require('autoloader.php');
+require('app/autoloader.php');
 
 $Hosts = new Hosts();
 $hosts = $Hosts->findAllHosts();

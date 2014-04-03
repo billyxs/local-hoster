@@ -1,5 +1,5 @@
 <?php
-require('autoloader.php');
+require('app/autoloader.php');
 $Config = new Config();
 
 // Set project data
@@ -22,9 +22,9 @@ $tableKeys = array_keys($projects[0]);
 $projectPaths = $Config->data['projects-path'];
 
 if(isset($_REQUEST['id']) ) {
-	$content ='views/project-edit.php';
+	$content ='app/Views/project-edit.php';
 } else {
-	$content = 'views/project-list.php';
+	$content = 'app/Views/project-list.php';
 }
 
-include('views/layout.php');
+include('app/Views/layout.php');
