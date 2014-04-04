@@ -9,6 +9,7 @@ class Core {
 				$controller_file 	= CONTROLLER 	. $class . '.php';
 				$model_file 			= MODEL 			. $class . '.php';
 				$core_file 				= CORE 				. $class . '.php';
+				$view_file 				= VIEW 				. $class . '.php';
 
 				self::debug('autoload');
 
@@ -23,6 +24,9 @@ class Core {
 				} else if(file_exists($core_file)) {
 		    	self::debug($core_file);
 					require_once $core_file;
+				} else if(file_exists($view_file)) {
+		    	self::debug($view_file);
+					require_once $view_file;
 				}
 
 		});
