@@ -16,6 +16,7 @@ define( CORE 					, APP_ROOT . 'Core' . DS);
 define( CONTROLLER 		, APP_ROOT . 'Controllers' . DS);
 define( MODEL 				, APP_ROOT . 'Models' . DS);
 define( VIEW 					, APP_ROOT . 'Views' . DS);
+define( STORAGE 			, APP_ROOT . 'Storage' . DS);
 
 require_once(CORE . 'Core.php');
 

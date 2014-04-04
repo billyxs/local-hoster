@@ -5,17 +5,22 @@
  * Manage the CRUD of the Local Hoster Projects
  */
 class ProjectsController extends Controller {
+	public $models = array('Project');
 
 	/**
 	 * index - Projects List with access to edit and delete each project
 	 *
 	 */
 	public function index() {
-		$Config = new Config();
+		$model = new ProjectModel();
+		// $projects = $model->findAll();
+		// print_r($projects);
+		// $Config = new Config();
 
-		$this->projects = $Config->data['projects'];
-		$this->tableKeys = array_keys( array_slice($this->projects, 0, 1) );
-		$this->projectPaths = $Config->data['projects-path'];
+		// $this->projects = $Config->data['projects'];
+		// $this->tableKeys = array_keys( array_slice($this->projects, 0, 1) );
+		// $this->projectPaths = $Config->data['projects-path'];
+
 	}
 
 	/**

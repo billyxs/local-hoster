@@ -1,6 +1,45 @@
 <?php
 class ModelJson extends Model {
 
+	public function __construct() {
+		parent::__construct();
+		$this->filename = $this->getStorageFilename();
+		$this->filepath = $this->getStoragePath();
+		$this->records = $this->getFileDataAsArray();
+		print_r($this->records);
+	}
+
+	public function getStorageFilename() {
+		return strtolower( str_replace('Model', '', $this->name) ) . 's.json';
+	}
+
+	public function getStoragePath(){
+		return STORAGE . $this->getStorageFilename();
+	}
+
+	public function getFile() {
+		$file_data = @file_get_contents( $this->getStoragePath() );
+		if(!$file_data) {
+			return $this->createEmptyFile();
+		} else {
+			return $file_data;
+		}
+	}
+
+	public function getFileDataAsArray() {
+		return json_decode($this->getFile(), true );
+	}
+
+	public function createEmptyFile() {
+		$json = '[]';
+		$fh = fopen($this->getStoragePath(), 'w+');
+		if($fh) {
+			fwrite($fh, $json);
+			fclose($fh);
+		}
+		return $json;
+	}
+
 	/*
 	 * save
 	 *
@@ -10,7 +49,6 @@ class ModelJson extends Model {
 	 * @return (type)
 	 */
 	public function save() {
-		gettype($this);
 		// $file = $this->getConfigFilePath();
 		// if(empty($data)) {
 		// 	echo 'data is empty';
