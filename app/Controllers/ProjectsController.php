@@ -12,15 +12,13 @@ class ProjectsController extends Controller {
 	 *
 	 */
 	public function index() {
-		$model = new ProjectModel();
-		// $projects = $model->findAll();
-		// print_r($projects);
-		// $Config = new Config();
+		$this->ProjectModel = new ProjectModel();
+		$this->projects = $this->ProjectModel->records;
 
-		// $this->projects = $Config->data['projects'];
-		// $this->tableKeys = array_keys( array_slice($this->projects, 0, 1) );
-		// $this->projectPaths = $Config->data['projects-path'];
+		$this->SettingModel = new SettingModel();
+		$this->settings = $this->SettingModel->getUserSettings();
 
+		$this->tableKeys = array_keys( array_slice($this->projects, 0, 1) );
 	}
 
 	/**
@@ -28,27 +26,20 @@ class ProjectsController extends Controller {
 	 *
 	 */
 	public function edit($id) {
-		$this->id = is_numeric( $id ) ? intval($id) : null;
+		$this->SettingModel = new SettingModel();
+		$this->settings = $this->SettingModel->getUserSettings();
+		print_r($this->settings);
 
-		$Config = new Config();
+		$this->ProjectModel = new ProjectModel();
+		$project = $this->ProjectModel->getRecordById($id);
 
-		$projects = $Config->data['projects'];
-		$this->tableKeys = array_keys( array_slice($projects, 0, 1) );
-		$this->projectPaths = $Config->data['projects-path'];
-
-		$this->config = $Config->data;
-
-		// save data
-		if(isset($this->data) ) {
-			$Config->addProject($this->data);
-			$Config->save($Config->data);
+		if($project) {
+			$this->project = $project;
+			$this->tableKeys = array_keys( array_slice($this->project, 0, 1) );
+		} else if($id !== 'add') {
+			$this->setAlert('Sorry, we could not find your project.');
 		}
 
-		if( array_key_exists($this->id, $projects) ) {
-			$this->project = $projects[$id];
-		}
-
-		$this->projects = $projects;
 	}
 
 

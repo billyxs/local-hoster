@@ -3,10 +3,7 @@ class ModelJson extends Model {
 
 	public function __construct() {
 		parent::__construct();
-		$this->filename = $this->getStorageFilename();
-		$this->filepath = $this->getStoragePath();
 		$this->records = $this->getFileDataAsArray();
-		print_r($this->records);
 	}
 
 	public function getStorageFilename() {
@@ -17,20 +14,20 @@ class ModelJson extends Model {
 		return STORAGE . $this->getStorageFilename();
 	}
 
-	public function getFile() {
+	public function getFileData() {
 		$file_data = @file_get_contents( $this->getStoragePath() );
 		if(!$file_data) {
-			return $this->createEmptyFile();
+			return $this->initializeStorage();
 		} else {
 			return $file_data;
 		}
 	}
 
 	public function getFileDataAsArray() {
-		return json_decode($this->getFile(), true );
+		return json_decode($this->getFileData(), true );
 	}
 
-	public function createEmptyFile() {
+	public function initializeStorage() {
 		$this->records = array();
 		$this->saveFile();
 		return $json;
@@ -44,6 +41,19 @@ class ModelJson extends Model {
 			fclose($fh);
 		}
 		return $fh;
+	}
+
+	public function getRecordById($id) {
+		if(is_numeric($id)) {
+			$id = intval($id);
+			foreach($this->records as $key=>$values) {
+				if($values['id'] == $id) {
+					return $values;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/*
@@ -106,25 +116,6 @@ class ModelJson extends Model {
 				unset( $this->data['projects'][$key] );
 			}
 		}
-	}
-
-	/*
-	 * findAll
-	 *
-	 * Pull data from file to set the object
-	 *
-	 * @return (array)
-	 */
-	private function findAll() {
-
-		if( !$this->exists() ) {
-			return;
-		}
-
-		$configJSON = file_get_contents($this->filePath);
-		$this->data = json_decode($configJSON, true);
-
-		return $this->data;
 	}
 
 	/*

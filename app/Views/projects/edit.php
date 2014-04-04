@@ -17,9 +17,9 @@
 			<label>Project Path</label>
 			<select id="selectProjectPath" class="form-control">
 				<?php
-				$paths = $Controller->projectPaths;
+				$paths = $Controller->settings['projects-path'];
 				if(is_array($paths) && count($paths) > 1) {
-					foreach($Controller->config['projects-path'] as $key=>$val) {
+					foreach($paths as $key=>$val) {
 				?>
 				<option value="<?php echo $val ?>"><?php echo $val ?></option>
 				<?php

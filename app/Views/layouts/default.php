@@ -3,6 +3,7 @@
 	<link href="/assets/css/bootstrap-3.1.0.min.css" rel="stylesheet" />
 	<link href="/assets/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" />
 
+
 </head>
 <body>
 
@@ -15,7 +16,11 @@
 			<a href="?controller=projects&action=settings" class="btn btn-default bt-lg"><i class="fa fa-cog fa-lg"></i> Settings</a>
 		</header>
 		<hr />
-		<div></div>
+		<?php if(isset($Controller->alert)) { ?>
+		<div>
+			<p class="alert bg-<?php echo $Controller->alert['class'] ?>"><?php echo $Controller->alert['message'] ?></p>
+		</div>
+		<?php } ?>
 		<?php include( $content ) ?>
 		<hr />
 		<footer>
