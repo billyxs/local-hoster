@@ -31,13 +31,19 @@ class ModelJson extends Model {
 	}
 
 	public function createEmptyFile() {
-		$json = '[]';
+		$this->records = array();
+		$this->saveFile();
+		return $json;
+	}
+
+	public function saveFile() {
 		$fh = fopen($this->getStoragePath(), 'w+');
+		$json = json_encode($this->records);
 		if($fh) {
 			fwrite($fh, $json);
 			fclose($fh);
 		}
-		return $json;
+		return $fh;
 	}
 
 	/*
