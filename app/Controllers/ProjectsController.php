@@ -35,7 +35,6 @@ class ProjectsController extends Controller {
 
 		// save data
 		if(isset($this->data) ) {
-			print_r($this->data);
 			$Config->addProject($this->data);
 			$Config->save($Config->data);
 		}
