@@ -4,7 +4,7 @@ require('app/config.php');
 $controller = "ProjectsController";
 $controller_view = 'projects';
 $action = "index";
-$param = null;
+$param1 = null;
 if(isset($_REQUEST['controller'])) {
 	$params = $_REQUEST;
 

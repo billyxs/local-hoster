@@ -64,24 +64,27 @@ class ModelJson extends Model {
 	 * @param (array) data
 	 * @return (type)
 	 */
-	public function save() {
-		// $file = $this->getConfigFilePath();
-		// if(empty($data)) {
-		// 	echo 'data is empty';
-		// 	return;
-		// }
+	public function save($data = array()) {
+		if(empty($data)) {
+			echo 'data is empty';
+			return;
+		}
 
-		// if(!is_writable( $file ) ) {
-		// 	echo 'not writable';
-		// 	return false;
-		// }
+		$this->records = $this->getFileDataAsArray();
 
-		// // If data hasn't been sent in, save the object's stored data
-		// if(!empty($data))
-		// 	$data = $this->data;
-		// $fh = file_put_contents($this->getConfigFilePath(), json_encode($data) );
+		if(!isset($data['id'])) {
+			$data['id'] = $this->getNextId();
+			$this->records[] = $values;
+		} else {
+			$data['id']	= intval($data['id']);
+			foreach($this->records as $key=>$project) {
+				if($project['id'] == $data['id']) {
+					$this->records[$key] = $data;
+					$this->saveFile();
+				}
+			}
+		}
 
-		// return $fh;
 	}
 
 	/*

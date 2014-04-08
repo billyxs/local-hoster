@@ -28,7 +28,7 @@ class ProjectsController extends Controller {
 	public function edit($id) {
 		$this->SettingModel = new SettingModel();
 		$this->settings = $this->SettingModel->getUserSettings();
-		print_r($this->settings);
+		// print_r($this->settings);
 
 		$this->ProjectModel = new ProjectModel();
 		$project = $this->ProjectModel->getRecordById($id);
@@ -91,20 +91,19 @@ class ProjectsController extends Controller {
 		}
 
 		if(isset($this->data) ) {
-			$Config = new Config();
+			// $Config = new Config();
+			$Project = new ProjectModel();
 
 			foreach($this->data as $key=>$value) {
 				if($value === "yes") {
 					$addProject = $projects[$key];
-					$Config->addProject(array(
+					$Project->save(array(
 							'Name'=>$addProject['ServerName'],
 							'DocumentRoot'=>$addProject['DocumentRoot'],
 							'ServerName'=>$addProject['ServerName'],
 						));
 				}
 			}
-
-			$Config->save($Config->data);
 		}
 
 		$this->projects = $projects;

@@ -2,6 +2,8 @@
 class SettingModel extends ModelJson {
 
 	public function getUserSettings(){
-		return $this->SettingModel->records[0];
+    $records = $this->records;
+    // print_r($records);
+		return (!empty($records)) ? $records : null;
 	}
 }

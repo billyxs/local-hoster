@@ -43,7 +43,7 @@ class Hosts extends LocalHosterFile {
 			$line = preg_split("/[\s,]+/", $val);
 			$line = array_diff($line, array(""));
 
-			if(is_array($line)) {
+			if(is_array($line) && !empty($line)) {
 				if(strpos($line[0], '127.0.0.1') === false ) {
 				} else {
 					$hosts[ $line[1] ] = $line[0];

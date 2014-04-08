@@ -1,5 +1,5 @@
 <?php
-class Controller {
+class Controller extends Core {
 	public function __construct() {
 
 	}
