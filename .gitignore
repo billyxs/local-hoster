@@ -1,3 +1,2 @@
 vendor/*
-.lh-settings
-.projects
+app/Storage/*.json
