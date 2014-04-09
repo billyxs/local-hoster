@@ -10,6 +10,7 @@ abstract class LocalHosterFile {
 
 	public function __construct ( $values = array('filePath'=>'') ) {
 		$os = php_uname();
+		echo $os;
 		if( strstr($os, 'MacBook') )
 			$this->OS = "OSX";
 
