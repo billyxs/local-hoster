@@ -70,15 +70,16 @@ class ModelJson extends Model {
 			return;
 		}
 
-		$this->records = $this->getFileDataAsArray();
+		$this->records = $this->getRecords();
 
 		if(!isset($data['id'])) {
 			$data['id'] = $this->getNextId();
-			$this->records[] = $values;
+			$this->records[] = $data;
+			$this->saveFile();
 		} else {
 			$data['id']	= intval($data['id']);
-			foreach($this->records as $key=>$project) {
-				if($project['id'] == $data['id']) {
+			foreach($this->records as $key=>$record) {
+				if($record['id'] == $data['id']) {
 					$this->records[$key] = $data;
 					$this->saveFile();
 				}
@@ -121,6 +122,11 @@ class ModelJson extends Model {
 		}
 	}
 
+	public function getRecords() {
+		$records = (isset($this->records)) ? $this->records : $this->getFileDataAsArray();
+		return $records;
+	}
+
 	/*
 	 * getNextId
 	 *
@@ -130,14 +136,19 @@ class ModelJson extends Model {
 	 */
 	private function getNextId() {
 		$ids = array();
-		foreach($this->data['projects'] as $key=>$project) {
-			if(isset($project['id']) ) {
-				$pid = $project['id'];
-				$ids[$pid] = $pid;
+		$records = $this->getRecords();
+
+		if(!empty($records)) {
+			foreach($records as $key=>$record) {
+				if(isset($record['id']) ) {
+					$pid = $record['id'];
+					$ids[$pid] = $pid;
+				}
 			}
 		}
-		$nextId = count( $this->data['projects'] );
-		while($ids[$nextId]) {
+
+		$nextId = count( $records );
+		while(isset($ids[$nextId])) {
 			$nextId++;
 		}
 		echo 'next id ' . $nextId;
