@@ -9,11 +9,12 @@ class Core {
 				$controller_file 	= CONTROLLER 	. $class . '.php';
 				$model_file 			= MODEL 			. $class . '.php';
 				$core_file 				= CORE 				. $class . '.php';
+				$view_file 				= VIEW 				. $class . '.php';
 
-				self::debug('autoload');
+				Core::debug('autoload');
 
 				if(file_exists($controller_file)) {
-					self::debug($controller_file);
+					Core::debug($controller_file);
 					require_once $controller_file;
 
 				} else if(file_exists($model_file)) {
@@ -21,8 +22,11 @@ class Core {
 					require_once $model_file;
 
 				} else if(file_exists($core_file)) {
-		    	self::debug($core_file);
+		    	Core::debug($core_file);
 					require_once $core_file;
+				} else if(file_exists($view_file)) {
+		    	Core::debug($view_file);
+					require_once $view_file;
 				}
 
 		});
@@ -30,7 +34,7 @@ class Core {
 
 	public static function debug($value) {
 
-		if(self::$debug) {
+		if(Core::$debug) {
 			echo $value . BR ;
 		}
 	}
