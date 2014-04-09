@@ -86,6 +86,9 @@ class Hosts extends LocalHosterFile {
 			case "OSX":
 				return '/etc/hosts';
 				break;
+			case "Windows":
+				return 'C:/Windows/System32/drivers/etc/hosts';
+				break;
 			default:
 				return '';
 				break;
