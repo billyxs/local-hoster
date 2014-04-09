@@ -9,15 +9,27 @@ abstract class LocalHosterFile {
 	protected $fileHandle = null;
 
 	public function __construct ( $values = array('filePath'=>'') ) {
-		$os = php_uname();
-		if( strstr($os, 'MacBook') )
-			$this->OS = "OSX";
+
+		$this->OS = $this->getOS();
 
 		if(isset($values['filePath'])) {
 			$this->filePath = $values['filePath'];
 		} else {
 			$this->filePath = $this->getSystemDefaultFilePath();
 		}
+	}
+
+	public function getOS() {
+		$os = php_uname();
+
+		if( strstr($os, 'MacBook') )
+			return "OSX";
+		else if( strstr($os, 'Windows') )
+			return "Windows";
+		else if( strstr($os, 'Linux') )
+			return "Linux";
+		 
+		return "Unknown";
 	}
 
 	public function setFilePath($filePath) {
@@ -63,10 +75,6 @@ abstract class LocalHosterFile {
 
 	public function copyUserFile() {
 
-	}
-
-	public function getOS() {
-		return $this->OS;
 	}
 
 	public function getFilePath() {
