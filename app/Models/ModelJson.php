@@ -34,6 +34,7 @@ class ModelJson extends Model {
 	}
 
 	public function saveFile() {
+		echo $this->getStoragePath();
 		$fh = fopen($this->getStoragePath(), 'w+');
 		$json = json_encode($this->records);
 		if($fh) {

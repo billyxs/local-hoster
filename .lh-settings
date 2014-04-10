@@ -1,0 +1,4 @@
+# Local Hoster Settings
+HostsPath /etc/hosts
+VirtualHostsPath /etc/apache2/extra/httpd-vhosts.conf
+ProjectPaths /Projects
