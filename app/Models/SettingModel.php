@@ -8,29 +8,44 @@ class SettingModel extends ModelJson {
 	}
 
   public function getHostsStatus() {
+    return $this->getFileStatus('hosts-path');
+  }
+
+  public function getVhostsStatus() {
+    return $this->getFileStatus('vhosts-path');
+  }
+
+  public function getProjectsStatus() {
+    return $this->getFileStatus('projects-path');
+  }
+
+  public function getFileStatus($filename="") {
     $result = array(
       'status'=>'fix',
       'exists'=>null,
       'writable'=>null,
-      'message'=>'Hosts file has not been defined'
+      'message'=>'File has not been defined'
     );
 
     $settings = $this->getUserSettings();
 
-    $hostsPath = $settings['hosts-path'];
-    if(isset($settings['host-path']) && strlen( $hostsPath ) > 1) {
-      if(!file_exists($hostsPath) ) {
-        $result['exists'] = false;
-        $result['message'] = 'Hosts file does not exist. Current set filepath: ' . $hostsPath;
-      } else {
+    $filePath = @$settings[$filename];
+    if(isset($settings['hosts-path']) && strlen( $filePath ) > 1) {
+      if(file_exists($filePath) ) {
         $result['exists'] = true;
+      } else {
+        $result['exists'] = false;
+        $result['message'] = 'File does not exist. Please Current set filepath: ' . $filePath;
+
       }
 
-      if(!is_writable($hostsPath) ) {
-        $result['writable'] = false;
-        $result['message'] = 'Hosts file is not writable. Current set filepath: ' . $hostsPath;
-      } else {
+      if(is_writable($filePath) ) {
         $result['writable'] = true;
+        $result['status'] = 'good';
+        unset($result['message']);
+      } else if($result['exists']) {
+        $result['writable'] = false;
+        $result['message'] = 'File is not writable. Current set filepath: ' . $filePath;
       }
     }
 

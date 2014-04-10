@@ -1,5 +1,6 @@
 <html>
 <head>
+	<title>Local Hoster</title>
 	<link href="/assets/css/bootstrap-3.1.0.min.css" rel="stylesheet" />
 	<link href="/assets/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -50,7 +51,7 @@
 	    var project = $('.project-folder:last').clone();
 	    console.log(project);
 	    project.attr('name', 'data[ProjectPaths][]')
-	    $("#projectsGroup").append("<br />").append(project);
+	    $("#projectsGroup").append(project).append('<br />');
 	  });
 	</script>
 

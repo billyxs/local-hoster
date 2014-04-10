@@ -5,5 +5,5 @@
 	  "/Users/montgomeryb/Projects/",
 	  "/Users/montgomeryb/Projects/Github"
 	],
-	"vhost-path": "/etc/apache/extra/httpd-vhosts.conf"
+	"vhosts-path": "/etc/apache2/extra/httpd-vhosts.conf"
 }]

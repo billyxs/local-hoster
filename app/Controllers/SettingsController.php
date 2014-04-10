@@ -19,7 +19,9 @@ class SettingsController extends Controller {
     $this->settings = $this->SettingModel->getUserSettings();
 
 
-    print_r( $this->SettingModel->getHostsStatus() );
+    $this->hostsStatus = $this->SettingModel->getHostsStatus();
+    $this->vhostsStatus = $this->SettingModel->getVhostsStatus();
+    $this->projectPaths = (is_array($this->settings['projects-path'] ) ) ? $this->settings['projects-path'] : array('/Projects');
   }
 
   /**
