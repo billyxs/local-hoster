@@ -98,6 +98,7 @@ class Vhosts extends LocalHosterFile {
 	private function getSystemDefaultFilePath() {
 		switch ($this->OS) {
 			case "OSX":
+			case "Linux":
 				return '/etc/apache2/extra/httpd-vhosts.conf';
 				break;
 			default:

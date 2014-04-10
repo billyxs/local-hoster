@@ -84,6 +84,7 @@ class Hosts extends LocalHosterFile {
 	private function getSystemDefaultFilePath() {
 		switch ($this->OS) {
 			case "OSX":
+			case "Linux":
 				return '/etc/hosts';
 				break;
 			case "Windows":

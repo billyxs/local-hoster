@@ -10,10 +10,10 @@ class ProjectsController extends Controller {
 	public function before() {
 		parent::before();
 
-		var $Setup = new SetupModel();
-		if(!$Setup->ready() ) {
-			$this->redirect();
-		}
+		// $Setup = new SetupModel();
+		// if(!$Setup->ready() ) {
+		// 	$this->redirect();
+		// }
 	}
 
 	/**
