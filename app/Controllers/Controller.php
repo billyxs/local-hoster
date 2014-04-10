@@ -9,7 +9,11 @@ class Controller extends Core {
 	}
 
 	public function alertSuccess($message) {
+		$this->setAlert($message, 'success');
+	}
 
+	public function alertError($message) {
+		$this->setAlert($message, 'error');
 	}
 
 	public function setAlert($message = '', $status='error') {

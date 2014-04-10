@@ -34,7 +34,6 @@ class ModelJson extends Model {
 	}
 
 	public function saveFile() {
-		echo $this->getStoragePath();
 		$fh = fopen($this->getStoragePath(), 'w+');
 		$json = json_encode($this->records);
 		if($fh) {
@@ -121,10 +120,13 @@ class ModelJson extends Model {
 			if($record['id'] == $id) {
 				unset($this->records[$key]);
 				$this->saveFile();
-				break;
+
+				return true;
 			}
 		}
 
+		// could not delete 
+		return false;
 	}
 
 	public function getRecords() {

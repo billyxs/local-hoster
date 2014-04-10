@@ -50,7 +50,7 @@ class ProjectsController extends Controller {
 			$this->project = $project;
 			$this->tableKeys = array_keys( array_slice($this->project, 0, 1) );
 		} else if($id !== 'add') {
-			$this->setAlert('Sorry, we could not find your project.');
+			$this->alertError('Sorry, we could not find your project.');
 		}
 
 	}
@@ -61,12 +61,17 @@ class ProjectsController extends Controller {
 	 *
 	 * @param int - project id
 	 */
-	public function delete($id) {
+	public function delete($id=null) {
 
-		$this->Project = new ProjectModel();
-		$project = $this->Project->delete($id);
-
-
+		if(is_numeric($id)) {
+			$this->Project = new ProjectModel();
+			if($this->Project->delete($id) ) {
+				$this->alertSuccess("Deleted project");
+			} else {
+				$this->alertError("Sorry, we could not delete your project. Please check your settings");
+			}
+		}
+	
 		// Load index values for view
 		// TODO: should find a better way to do this, maybe a redirect
 		$this->index();
@@ -108,9 +113,11 @@ class ProjectsController extends Controller {
 		if(isset($this->data) ) {
 			// $Config = new Config();
 			$Project = new ProjectModel();
-
+			$imported = false;
 			foreach($this->data as $key=>$value) {
 				if($value === "yes") {
+					$imported = true;
+
 					$addProject = $projects[$key];
 					$Project->save(array(
 							'Name'=>$addProject['ServerName'],
@@ -118,6 +125,12 @@ class ProjectsController extends Controller {
 							'ServerName'=>$addProject['ServerName'],
 						));
 				}
+			}
+
+			if($imported) {
+				$this->alertSuccess('Imported projects');
+			} else {
+				$this->alertError('No projects were imported');
 			}
 		}
 
