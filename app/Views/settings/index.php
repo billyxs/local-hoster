@@ -1,10 +1,3 @@
-<?php
-  print_r($Controller->hostsStatus);
-  echo BR;
-  print_r($Controller->vhostsStatus);
-?>
-
-
 <div class="row">
   <form role="form" method="POST" class="col-md-6">
     <div class="form-group <?php echo ($Controller->hostsStatus['status'] === "good") ? 'has-success' : 'has-error' ?>">

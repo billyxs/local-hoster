@@ -30,7 +30,7 @@ class ModelJson extends Model {
 	public function initializeStorage() {
 		$this->records = array();
 		$this->saveFile();
-		return $json;
+		return;
 	}
 
 	public function saveFile() {
@@ -72,7 +72,7 @@ class ModelJson extends Model {
 
 		$this->records = $this->getRecords();
 
-		if(!isset($data['id'])) {
+		if(!isset($data['id']) || empty($this->records)) {
 			$data['id'] = $this->getNextId();
 			$this->records[] = $data;
 			$this->saveFile();

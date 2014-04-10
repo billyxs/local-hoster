@@ -16,9 +16,13 @@ class SettingsController extends Controller {
    */
   public function index() {
     $this->SettingModel = new SettingModel();
+
+    if(isset($this->data) ) {
+      $this->data['id'] = 0;
+      $this->SettingModel->save($this->data);
+    }
+
     $this->settings = $this->SettingModel->getUserSettings();
-
-
     $this->hostsStatus = $this->SettingModel->getHostsStatus();
     $this->vhostsStatus = $this->SettingModel->getVhostsStatus();
     $this->projectPaths = (is_array($this->settings['projects-path'] ) ) ? $this->settings['projects-path'] : array('/Projects');
@@ -29,7 +33,15 @@ class SettingsController extends Controller {
    *
    */
   public function edit($id) {
+    $this->SettingModel = new SettingModel();
+    $this->settings = $this->SettingModel->getUserSettings();
 
+    if($project) {
+      $this->project = $project;
+      $this->tableKeys = array_keys( array_slice($this->project, 0, 1) );
+    } else if($id !== 'add') {
+      $this->setAlert('Sorry, we could not find your project.');
+    }
 
   }
 

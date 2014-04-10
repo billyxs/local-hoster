@@ -50,7 +50,6 @@
 	  $('#addFolder').click(function() {
 	    var project = $('.project-folder:last').clone();
 	    console.log(project);
-	    project.attr('name', 'data[ProjectPaths][]')
 	    $("#projectsGroup").append(project).append('<br />');
 	  });
 	</script>
