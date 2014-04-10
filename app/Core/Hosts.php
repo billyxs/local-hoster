@@ -8,10 +8,9 @@ class Hosts extends LocalHosterFile {
 
 	protected $fileHandle = null;
 
-	public function __construct($values=array()) {
-		parent::__construct($values);
-		$this->filePath = $this->getSystemDefaultFilePath();
-	}
+	// public function __construct($values=array()) {
+	// 	parent::__construct($values);
+	// }
 
 	public function addDomainBatch($values = array() ) {
 		if(empty($values)) {

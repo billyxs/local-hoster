@@ -83,11 +83,13 @@ class ProjectsController extends Controller {
 	 *
 	 */
 	public function import() {
+		$this->SettingModel = new SettingModel();
+		$settings = $this->SettingModel->getUserSettings();
 
-		$Hosts = new Hosts();
+		$Hosts = new Hosts(array('filePath'=>$settings['hosts-path']));
 		$hosts = $Hosts->findAllHosts();
 
-		$Vhosts = new Vhosts();
+		$Vhosts = new Vhosts(array('filePath'=>$settings['vhosts-path']));
 		$vhosts = $Vhosts->findAllVhosts();
 
 		$projects = array();
