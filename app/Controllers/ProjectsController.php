@@ -7,6 +7,15 @@
 class ProjectsController extends Controller {
 	public $models = array('Project');
 
+	public function before() {
+		parent::before();
+
+		var $Setup = new SetupModel();
+		if(!$Setup->ready() ) {
+			$this->redirect();
+		}
+	}
+
 	/**
 	 * index - Projects List with access to edit and delete each project
 	 *
@@ -30,8 +39,12 @@ class ProjectsController extends Controller {
 		$this->settings = $this->SettingModel->getUserSettings();
 		// print_r($this->settings);
 
-		$this->ProjectModel = new ProjectModel();
-		$project = $this->ProjectModel->getRecordById($id);
+		$this->Project = new ProjectModel();
+		$project = $this->Project->getRecordById($id);
+
+		if(isset($this->data) ) {
+			$Project->save($this->data);
+		}
 
 		if($project) {
 			$this->project = $project;

@@ -26,6 +26,7 @@ $Controller = new $controller();
 if(isset($_POST['data']) ) {
 	$Controller->data = $_POST['data'];
 }
+$Controller->before();
 $Controller->$action($param1);
 
 // If the controller sets the view, use it, otherwise use the named action

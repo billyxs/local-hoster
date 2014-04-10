@@ -4,6 +4,10 @@ class Controller extends Core {
 
 	}
 
+	public function before() {
+
+	}
+
 	public function alertSuccess($message) {
 
 	}

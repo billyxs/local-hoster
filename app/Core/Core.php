@@ -2,6 +2,21 @@
 class Core {
 	static $debug = false;
 
+	static $OS = null;
+
+	public function getOS() {
+		$os = php_uname();
+
+		if( strstr($os, 'MacBook') )
+			return "OSX";
+		else if( strstr($os, 'Windows') )
+			return "Windows";
+		else if( strstr($os, 'Linux') )
+			return "Linux";
+
+		return "Unknown";
+	}
+
 	public static function autoload() {
 		// Autoload Classes
 		spl_autoload_register(function ($class) {

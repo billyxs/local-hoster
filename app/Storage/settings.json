@@ -1,8 +1,1 @@
-{
-	"hosts-path":"/etc/hosts",
-	"projects-path": [
-	  "/Users/montgomeryb/Projects/",
-	  "/Users/montgomeryb/Projects/Github"
-	],
-	"vhost-path": "/etc/apache/extra/httpd-vhosts.conf"
-}
+[{"hosts-path":"\/etc\/hosts","vhosts-path":"\/etc\/apache2\/extra\/httpd-vhosts.conf","projects-path":["\/Projects","\/Projects\/Github"],"id":0}]
