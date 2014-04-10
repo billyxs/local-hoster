@@ -63,9 +63,9 @@ class ProjectsController extends Controller {
 	 */
 	public function delete($id) {
 
-		$Config = new Config();
-		$Config->deleteProject( $id );
-		$Config->save($Config->data);
+		$this->Project = new ProjectModel();
+		$project = $this->Project->delete($id);
+
 
 		// Load index values for view
 		// TODO: should find a better way to do this, maybe a redirect

@@ -116,11 +116,15 @@ class ModelJson extends Model {
 	}
 
 	public function delete($id) {
-		foreach($this->data['projects'] as $key=>$project) {
-			if($project['id'] == $id) {
-				unset( $this->data['projects'][$key] );
+		$this->records = $this->getRecords();
+		foreach($this->records as $key=>$record) {
+			if($record['id'] == $id) {
+				unset($this->records[$key]);
+				$this->saveFile();
+				break;
 			}
 		}
+
 	}
 
 	public function getRecords() {

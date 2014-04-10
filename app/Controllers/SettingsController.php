@@ -32,17 +32,18 @@ class SettingsController extends Controller {
    * edit - Handles editing of a project, or adding a new project
    *
    */
-  public function edit($id) {
+  public function edit() {
     $this->SettingModel = new SettingModel();
-    $this->settings = $this->SettingModel->getUserSettings();
 
-    if($project) {
-      $this->project = $project;
-      $this->tableKeys = array_keys( array_slice($this->project, 0, 1) );
-    } else if($id !== 'add') {
-      $this->setAlert('Sorry, we could not find your project.');
+    if(isset($this->data) ) {
+      $this->data['id'] = 0;
+      $this->SettingModel->save($this->data);
     }
 
+    $this->settings = $this->SettingModel->getUserSettings();
+    $this->hostsStatus = $this->SettingModel->getHostsStatus();
+    $this->vhostsStatus = $this->SettingModel->getVhostsStatus();
+    $this->projectPaths = (is_array($this->settings['projects-path'] ) ) ? $this->settings['projects-path'] : array('/Projects');
   }
 
 
