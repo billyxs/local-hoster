@@ -1,2 +1,3 @@
 vendor/*
-app/Storage/*
+app/Storage/projects.json
+app/Storage/settings.json
