@@ -7,6 +7,19 @@ class SettingModel extends ModelJson {
 		return (!empty($records)) ? $records[0] : null;
 	}
 
+
+
+  public function getTemplatePath($filename) {
+    return STORAGE . $filename . '.template';
+  }
+
+  public function getTemplateFile($name) {
+    return @file_get_contents( $this->getTemplatePath($name) );
+  }
+
+
+
+
   public function getHostsStatus() {
     return $this->getSettingFileStatus('hosts-path');
   }
