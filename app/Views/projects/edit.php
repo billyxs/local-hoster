@@ -6,6 +6,11 @@
 	<?php } ?>
 
 		<div class="form-group">
+			<label>Project Group</label>
+			<input type="text" name="data[Group]" value="<?php echo (isset($Controller->project) ) ? $Controller->project['Group'] : ''; ?>" class="form-control" placeholder="Project Name">
+		</div>
+
+		<div class="form-group">
 			<label>Project Name</label>
 			<input type="text" name="data[Name]" value="<?php echo (isset($Controller->project) ) ? $Controller->project['Name'] : ''; ?>" class="form-control" placeholder="Project Name">
 		</div>

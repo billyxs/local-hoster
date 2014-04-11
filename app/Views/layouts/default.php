@@ -3,8 +3,7 @@
 	<title>Local Hoster</title>
 	<link href="/assets/css/bootstrap-3.1.0.min.css" rel="stylesheet" />
 	<link href="/assets/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" />
-
-
+	<link href="/assets/css/main.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -16,6 +15,8 @@
 			<a href="?controller=projects&action=import" class="btn btn-info bt-lg"><i class="fa fa-upload fa-lg"></i> Project Import</a>
 			<a href="?controller=settings" class="btn btn-default bt-lg"><i class="fa fa-cog fa-lg"></i> Settings</a>
 			<a href="?controller=settings&action=edit" class="btn btn-warning bt-lg"><i class="fa fa-edit fa-lg"></i> Edit Settings</a>
+			<a href="?controller=settings&action=setupHosts" class="btn btn-danger bt-lg"><i class="fa fa-edit fa-lg"></i> Hosts Template</a>
+			<a href="?controller=settings&action=setupVhosts" class="btn btn-info bt-lg"><i class="fa fa-edit fa-lg"></i> Vhosts Template</a>
 		</header>
 		<hr />
 		<?php if(isset($Controller->alert)) { ?>

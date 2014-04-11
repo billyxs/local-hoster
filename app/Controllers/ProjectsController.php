@@ -40,11 +40,17 @@ class ProjectsController extends Controller {
 		// print_r($this->settings);
 
 		$this->Project = new ProjectModel();
-		$project = $this->Project->getRecordById($id);
-
 		if(isset($this->data) ) {
-			$Project->save($this->data);
+			$saved = $this->Project->save($this->data);
+			if($saved ) {
+				$this->Project->sync();
+				$this->alertSuccess("Project saved");
+			} else {
+				$this->alertError("There was an error. Your project did not save.");
+			}
 		}
+
+		$project = $this->Project->getRecordById($id);
 
 		if($project) {
 			$this->project = $project;
@@ -66,12 +72,13 @@ class ProjectsController extends Controller {
 		if(is_numeric($id)) {
 			$this->Project = new ProjectModel();
 			if($this->Project->delete($id) ) {
+				$this->Project->sync();
 				$this->alertSuccess("Deleted project");
 			} else {
 				$this->alertError("Sorry, we could not delete your project. Please check your settings");
 			}
 		}
-	
+
 		// Load index values for view
 		// TODO: should find a better way to do this, maybe a redirect
 		$this->index();
@@ -88,6 +95,7 @@ class ProjectsController extends Controller {
 	 *
 	 */
 	public function import() {
+
 		$this->SettingModel = new SettingModel();
 		$settings = $this->SettingModel->getUserSettings();
 
@@ -120,12 +128,15 @@ class ProjectsController extends Controller {
 
 					$addProject = $projects[$key];
 					$Project->save(array(
+							'Group'=>'',
 							'Name'=>$addProject['ServerName'],
 							'DocumentRoot'=>$addProject['DocumentRoot'],
 							'ServerName'=>$addProject['ServerName'],
 						));
 				}
 			}
+
+			$Project->sync();
 
 			if($imported) {
 				$this->alertSuccess('Imported projects');

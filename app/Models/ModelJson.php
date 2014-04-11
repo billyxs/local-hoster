@@ -81,11 +81,12 @@ class ModelJson extends Model {
 			foreach($this->records as $key=>$record) {
 				if($record['id'] == $data['id']) {
 					$this->records[$key] = $data;
-					$this->saveFile();
+					return $this->saveFile();
 				}
 			}
 		}
 
+		return false;
 	}
 
 	/*
@@ -125,7 +126,7 @@ class ModelJson extends Model {
 			}
 		}
 
-		// could not delete 
+		// could not delete
 		return false;
 	}
 

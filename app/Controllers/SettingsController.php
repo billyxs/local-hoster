@@ -63,23 +63,35 @@ class SettingsController extends Controller {
     $this->projectPaths = (is_array($this->settings['projects-path'] ) ) ? $this->settings['projects-path'] : array('/Projects');
   }
 
-
-  /**
-   * delete - Delete project by id
-   *
-   * @param int - project id
-   */
-  public function delete($id) {
-
-    $Config = new Config();
-    $Config->deleteProject( $id );
-    $Config->save($Config->data);
-
-    // Load index values for view
-    // TODO: should find a better way to do this, maybe a redirect
-    $this->index();
-    // Set the view that is needed
-    $this->view = 'index';
+  public function setupHosts() {
+    $this->setupFile('hosts');
   }
+
+  public function setupVhosts() {
+    $this->setupFile('vhosts');
+  }
+
+  public function setupFile($type) {
+    $displayType = ucwords($type);
+
+    if(isset($this->data)) {
+      $contents = str_ireplace("\x0D", "", $this->data['FileTemplate']);
+      $result = @file_put_contents(STORAGE . $type . '.template' , $contents);
+
+      if($result)
+        $this->alertSuccess($displayType . ' file has been saved');
+      else
+        $this->alertError($displayType . ' could not be saved');
+    }
+
+    $this->SettingModel = new SettingModel();
+    $this->settings = $this->SettingModel->getUserSettings();
+    $fileKey = $type . '-path';
+    $this->hostsFile = file_get_contents($this->settings[$fileKey]);
+
+    $this->fileType = $displayType;
+    $this->view = "setupFile";
+  }
+
 
 }
