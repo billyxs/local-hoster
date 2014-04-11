@@ -1,6 +1,14 @@
 <?php
 class ProjectModel extends ModelJson {
 
+  public function getRecordById($id) {
+    $project = parent::getRecordById($id);
+    if($project && !isset($project['Group']))
+      $project['Group'] = 'System';
+
+    return $project;
+  }
+
   public function sync() {
     $projects = $this->getRecordsByGroup();
     // echo json_encode($projects);
@@ -45,7 +53,7 @@ class ProjectModel extends ModelJson {
     $records = $this->getRecords();
     if(!empty($records)) {
       foreach( $records as $key=>$record ) {
-        $group = $record['Group'];
+        $group = isset($record['Group']) ? $record['Group'] : '# Local Hoster';
         if(!isset($projects[ $group ] )) {
           $projects[$group] = array();
         }
