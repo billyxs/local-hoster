@@ -22,9 +22,26 @@ class SettingsController extends Controller {
       $this->SettingModel->save($this->data);
     }
 
+    $this->settingStorageStatus = $this->SettingModel->getStorageStatus('settings');
+    if(!$this->settingStorageStatus['exists']) {
+      $Setting = new SettingModel();
+      $this->settingStorageStatus = $this->SettingModel->getStorageStatus('settings');
+    }
+
+
+    $this->projectStorageStatus = $this->SettingModel->getStorageStatus('projects');
+    if(!$this->projectStorageStatus['exists']) {
+      $Project = new ProjectModel();
+      $this->projectStorageStatus = $this->SettingModel->getStorageStatus('projects');
+    }
+
     $this->settings = $this->SettingModel->getUserSettings();
     $this->hostsStatus = $this->SettingModel->getHostsStatus();
     $this->vhostsStatus = $this->SettingModel->getVhostsStatus();
+
+    // print_r($this->projectStorageStatus);
+    // print_r($this->settingStorageStatus);
+
     $this->projectPaths = (is_array($this->settings['projects-path'] ) ) ? $this->settings['projects-path'] : array('/Projects');
   }
 

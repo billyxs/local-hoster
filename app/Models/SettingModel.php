@@ -8,18 +8,33 @@ class SettingModel extends ModelJson {
 	}
 
   public function getHostsStatus() {
-    return $this->getFileStatus('hosts-path');
+    return $this->getSettingFileStatus('hosts-path');
   }
 
   public function getVhostsStatus() {
-    return $this->getFileStatus('vhosts-path');
+    return $this->getSettingFileStatus('vhosts-path');
+  }
+
+  public function getStorageStatus($modelName) {
+    $storagePath = STORAGE . $modelName . '.json';
+    return $this->getFileStatus($storagePath);
   }
 
   public function getProjectsStatus() {
     return $this->getFileStatus('projects-path');
   }
 
-  public function getFileStatus($filename="") {
+  public function getSettingFileStatus($filename="") {
+    $settings = $this->getUserSettings();
+
+    $filepath = @$settings[$filename];
+    $result = $this->getFileStatus($filepath);
+
+    return $result;
+  }
+
+
+  public function getFileStatus($filepath='') {
     $result = array(
       'status'=>'fix',
       'exists'=>null,
@@ -27,25 +42,22 @@ class SettingModel extends ModelJson {
       'message'=>'File has not been defined'
     );
 
-    $settings = $this->getUserSettings();
-
-    $filePath = @$settings[$filename];
-    if(isset($settings['hosts-path']) && strlen( $filePath ) > 1) {
-      if(file_exists($filePath) ) {
+    if(strlen( $filepath ) > 1) {
+      if(file_exists($filepath) ) {
         $result['exists'] = true;
       } else {
         $result['exists'] = false;
-        $result['message'] = 'File does not exist. Please Current set filepath: ' . $filePath;
+        $result['message'] = 'File does not exist. Current set filepath: ' . $filepath;
 
       }
 
-      if(is_writable($filePath) ) {
+      if(is_writable($filepath) ) {
         $result['writable'] = true;
         $result['status'] = 'good';
         unset($result['message']);
       } else if($result['exists']) {
         $result['writable'] = false;
-        $result['message'] = 'File is not writable. Current set filepath: ' . $filePath;
+        $result['message'] = 'File is not writable. Current set filepath: ' . $filepath;
       }
     }
 
