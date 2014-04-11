@@ -89,6 +89,8 @@ class SettingsController extends Controller {
     $fileKey = $type . '-path';
     $this->hostsFile = file_get_contents($this->settings[$fileKey]);
 
+    $this->template = $this->SettingModel->getTemplateFile($type);
+
     $this->fileType = $displayType;
     $this->view = "setupFile";
   }

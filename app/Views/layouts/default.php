@@ -10,13 +10,14 @@
 	<div class="container">
 		<header>
 			<h3>Local Hoster</h3>
-			<a href="/" class="btn btn-primary bt-lg"><i class="fa fa-th-list fa-lg"></i> Projects</a>
-			<a href="?controller=projects&action=edit&id=add" class="btn btn-success bt-lg"><i class="fa fa-plus fa-lg"></i> Add Project</a>
-			<a href="?controller=projects&action=import" class="btn btn-info bt-lg"><i class="fa fa-upload fa-lg"></i> Project Import</a>
-			<a href="?controller=settings" class="btn btn-default bt-lg"><i class="fa fa-cog fa-lg"></i> Settings</a>
-			<a href="?controller=settings&action=edit" class="btn btn-warning bt-lg"><i class="fa fa-edit fa-lg"></i> Edit Settings</a>
-			<a href="?controller=settings&action=setupHosts" class="btn btn-danger bt-lg"><i class="fa fa-edit fa-lg"></i> Hosts Template</a>
-			<a href="?controller=settings&action=setupVhosts" class="btn btn-info bt-lg"><i class="fa fa-edit fa-lg"></i> Vhosts Template</a>
+			<?php
+				$controllerName = str_replace('Controller', '', get_class($Controller) );
+				if( $controllerName === 'Settings' ) {
+					include(ELEMENT . 'nav/settings.php');
+				} else {
+					include(ELEMENT . 'nav/projects.php');
+				}
+			?>
 		</header>
 		<hr />
 		<?php if(isset($Controller->alert)) { ?>
