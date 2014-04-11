@@ -5,17 +5,29 @@
  * Manage the CRUD of the Local Hoster Projects
  */
 class ProjectsController extends Controller {
+	public $models = array('Project');
+
+	public function before() {
+		parent::before();
+
+		// $Setup = new SetupModel();
+		// if(!$Setup->ready() ) {
+		// 	$this->redirect();
+		// }
+	}
 
 	/**
 	 * index - Projects List with access to edit and delete each project
 	 *
 	 */
 	public function index() {
-		$Config = new Config();
+		$this->ProjectModel = new ProjectModel();
+		$this->projects = $this->ProjectModel->records;
 
-		$this->projects = $Config->data['projects'];
+		$this->SettingModel = new SettingModel();
+		$this->settings = $this->SettingModel->getUserSettings();
+
 		$this->tableKeys = array_keys( array_slice($this->projects, 0, 1) );
-		$this->projectPaths = $Config->data['projects-path'];
 	}
 
 	/**
@@ -23,27 +35,30 @@ class ProjectsController extends Controller {
 	 *
 	 */
 	public function edit($id) {
-		$this->id = is_numeric( $id ) ? intval($id) : null;
+		$this->SettingModel = new SettingModel();
+		$this->settings = $this->SettingModel->getUserSettings();
+		// print_r($this->settings);
 
-		$Config = new Config();
-
-		$projects = $Config->data['projects'];
-		$this->tableKeys = array_keys( array_slice($projects, 0, 1) );
-		$this->projectPaths = $Config->data['projects-path'];
-
-		$this->config = $Config->data;
-
-		// save data
+		$this->Project = new ProjectModel();
 		if(isset($this->data) ) {
-			$Config->addProject($this->data);
-			$Config->save($Config->data);
+			$saved = $this->Project->save($this->data);
+			if($saved ) {
+				$this->Project->sync();
+				$this->alertSuccess("Project saved");
+			} else {
+				$this->alertError("There was an error. Your project did not save.");
+			}
 		}
 
-		if( array_key_exists($this->id, $projects) ) {
-			$this->project = $projects[$id];
+		$project = $this->Project->getRecordById($id);
+
+		if($project) {
+			$this->project = $project;
+			$this->tableKeys = array_keys( array_slice($this->project, 0, 1) );
+		} else if($id !== 'add') {
+			$this->alertError('Sorry, we could not find your project.');
 		}
 
-		$this->projects = $projects;
 	}
 
 
@@ -52,11 +67,17 @@ class ProjectsController extends Controller {
 	 *
 	 * @param int - project id
 	 */
-	public function delete($id) {
+	public function delete($id=null) {
 
-		$Config = new Config();
-		$Config->deleteProject( $id );
-		$Config->save($Config->data);
+		if(is_numeric($id)) {
+			$this->Project = new ProjectModel();
+			if($this->Project->delete($id) ) {
+				$this->Project->sync();
+				$this->alertSuccess("Deleted project");
+			} else {
+				$this->alertError("Sorry, we could not delete your project. Please check your settings");
+			}
+		}
 
 		// Load index values for view
 		// TODO: should find a better way to do this, maybe a redirect
@@ -75,10 +96,13 @@ class ProjectsController extends Controller {
 	 */
 	public function import() {
 
-		$Hosts = new Hosts();
+		$this->SettingModel = new SettingModel();
+		$settings = $this->SettingModel->getUserSettings();
+
+		$Hosts = new Hosts(array('filePath'=>$settings['hosts-path']));
 		$hosts = $Hosts->findAllHosts();
 
-		$Vhosts = new Vhosts();
+		$Vhosts = new Vhosts(array('filePath'=>$settings['vhosts-path']));
 		$vhosts = $Vhosts->findAllVhosts();
 
 		$projects = array();
@@ -95,12 +119,16 @@ class ProjectsController extends Controller {
 		}
 
 		if(isset($this->data) ) {
-			$Config = new Config();
-
+			// $Config = new Config();
+			$Project = new ProjectModel();
+			$imported = false;
 			foreach($this->data as $key=>$value) {
 				if($value === "yes") {
+					$imported = true;
+
 					$addProject = $projects[$key];
-					$Config->addProject(array(
+					$Project->save(array(
+							'Group'=>'',
 							'Name'=>$addProject['ServerName'],
 							'DocumentRoot'=>$addProject['DocumentRoot'],
 							'ServerName'=>$addProject['ServerName'],
@@ -108,7 +136,13 @@ class ProjectsController extends Controller {
 				}
 			}
 
-			$Config->save($Config->data);
+			$Project->sync();
+
+			if($imported) {
+				$this->alertSuccess('Imported projects');
+			} else {
+				$this->alertError('No projects were imported');
+			}
 		}
 
 		$this->projects = $projects;

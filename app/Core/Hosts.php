@@ -8,10 +8,9 @@ class Hosts extends LocalHosterFile {
 
 	protected $fileHandle = null;
 
-	public function __construct($values=array()) {
-		parent::__construct($values);
-		$this->filePath = $this->getSystemDefaultFilePath();
-	}
+	// public function __construct($values=array()) {
+	// 	parent::__construct($values);
+	// }
 
 	public function addDomainBatch($values = array() ) {
 		if(empty($values)) {
@@ -43,7 +42,7 @@ class Hosts extends LocalHosterFile {
 			$line = preg_split("/[\s,]+/", $val);
 			$line = array_diff($line, array(""));
 
-			if(is_array($line)) {
+			if(is_array($line) && !empty($line)) {
 				if(strpos($line[0], '127.0.0.1') === false ) {
 				} else {
 					$hosts[ $line[1] ] = $line[0];
@@ -84,7 +83,11 @@ class Hosts extends LocalHosterFile {
 	private function getSystemDefaultFilePath() {
 		switch ($this->OS) {
 			case "OSX":
+			case "Linux":
 				return '/etc/hosts';
+				break;
+			case "Windows":
+				return 'C:/Windows/System32/drivers/etc/hosts';
 				break;
 			default:
 				return '';

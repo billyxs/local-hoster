@@ -7,10 +7,9 @@ class Vhosts extends LocalHosterFile {
 
 	protected $fileHandle = null;
 
-	public function __construct($values=array()) {
-		parent::__construct($values);
-		$this->filePath = $this->getSystemDefaultFilePath();
-	}
+	// public function __construct($values=array()) {
+	// 	parent::__construct($values);
+	// }
 
 	public function addDomainBatch($values = array() ) {
 		if(empty($values)) {
@@ -98,7 +97,11 @@ class Vhosts extends LocalHosterFile {
 	private function getSystemDefaultFilePath() {
 		switch ($this->OS) {
 			case "OSX":
+			case "Linux":
 				return '/etc/apache2/extra/httpd-vhosts.conf';
+				break;
+			case "Windows":
+				return 'C:/apache/conf/extra/httpd-vhosts.conf';
 				break;
 			default:
 				return '';

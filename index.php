@@ -4,7 +4,7 @@ require('app/config.php');
 $controller = "ProjectsController";
 $controller_view = 'projects';
 $action = "index";
-$param = null;
+$param1 = null;
 if(isset($_REQUEST['controller'])) {
 	$params = $_REQUEST;
 
@@ -26,6 +26,7 @@ $Controller = new $controller();
 if(isset($_POST['data']) ) {
 	$Controller->data = $_POST['data'];
 }
+$Controller->before();
 $Controller->$action($param1);
 
 // If the controller sets the view, use it, otherwise use the named action
