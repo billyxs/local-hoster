@@ -11,7 +11,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach($Controller->projects as $project) { ?>
+		<?php foreach($this->projects as $project) { ?>
 			<tr>
 			<?php foreach($keys as $key) { ?>
 				<td>

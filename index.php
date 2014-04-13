@@ -1,37 +1,7 @@
 <?php
 require('app/config.php');
 
-$controller = "ProjectsController";
-$controller_view = 'projects';
-$action = "index";
-$param1 = null;
-if(isset($_REQUEST['controller'])) {
-	$params = $_REQUEST;
-
-	if(isset($params['controller'])) {
-		$controller = ucwords($params['controller']) . 'Controller';
-		$controller_view = $params['controller'];
-
-		if(isset($params['action'])) {
-			$action = $params['action'];
-
-			if(isset($params['id'])) {
-				$param1 = $params['id'];
-			}
-		}
-	}
-}
-
-$Controller = new $controller();
-if(isset($_POST['data']) ) {
-	$Controller->data = $_POST['data'];
-}
-$Controller->before();
-$Controller->$action($param1);
-
-// If the controller sets the view, use it, otherwise use the named action
-$view = (isset($Controller->view)) ? $Controller->view : $action;
-
-
-$content = VIEW . $controller_view . DS . $view . '.php';
-include('app/Views/layouts/default.php');
+$controller = isset($_REQUEST['controller']) ? ucwords($_REQUEST['controller']) . 'Controller' : 'ProjectsController';
+$POST = (isset($_POST)) ? $_POST : null;
+$GET = (isset($_GET)) ? $_GET : null;
+$Controller = new $controller($GET, $POST);

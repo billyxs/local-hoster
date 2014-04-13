@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 	<?php
-	foreach($Controller->projects as $key=>$values) {
+	foreach($this->projects as $key=>$values) {
 	?>
 		<tr>
 			<td class="form-control">

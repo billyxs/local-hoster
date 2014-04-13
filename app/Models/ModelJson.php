@@ -75,7 +75,7 @@ class ModelJson extends Model {
 		if(!isset($data['id']) || empty($this->records)) {
 			$data['id'] = $this->getNextId();
 			$this->records[] = $data;
-			$this->saveFile();
+			return $this->saveFile();
 		} else {
 			$data['id']	= intval($data['id']);
 			foreach($this->records as $key=>$record) {
@@ -159,7 +159,7 @@ class ModelJson extends Model {
 		while(isset($ids[$nextId])) {
 			$nextId++;
 		}
-		echo 'next id ' . $nextId;
+
 		return $nextId;
 	}
 }
