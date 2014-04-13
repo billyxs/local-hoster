@@ -9,11 +9,6 @@ class ProjectsController extends Controller {
 
 	public function before() {
 		parent::before();
-
-		// $Setup = new SetupModel();
-		// if(!$Setup->ready() ) {
-		// 	$this->redirect();
-		// }
 	}
 
 	/**
@@ -79,11 +74,7 @@ class ProjectsController extends Controller {
 			}
 		}
 
-		// Load index values for view
-		// TODO: should find a better way to do this, maybe a redirect
-		$this->index();
-		// Set the view that is needed
-		$this->view = 'index';
+		$this->redirect(array('controller'=>'projects', 'action'=>'index') );
 	}
 
 
