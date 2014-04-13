@@ -11,8 +11,8 @@
 		<header>
 			<h3>Local Hoster</h3>
 			<?php
-				$controllerName = str_replace('Controller', '', get_class($Controller) );
-				if( $controllerName === 'Settings' ) {
+				$thisName = str_replace('Controller', '', get_class($this) );
+				if( $thisName === 'Settings' ) {
 					include(ELEMENT . 'nav/settings.php');
 				} else {
 					include(ELEMENT . 'nav/projects.php');
@@ -20,9 +20,9 @@
 			?>
 		</header>
 		<hr />
-		<?php if(isset($Controller->alert)) { ?>
+		<?php if(isset($this->alert)) { ?>
 		<div>
-			<p class="alert bg-<?php echo $Controller->alert['class'] ?>"><?php echo $Controller->alert['message'] ?></p>
+			<p class="alert bg-<?php echo $this->alert['class'] ?>"><?php echo $this->alert['message'] ?></p>
 		</div>
 		<?php } ?>
 		<?php include( $content ) ?>
