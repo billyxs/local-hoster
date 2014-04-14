@@ -25,7 +25,7 @@
 			<p class="alert bg-<?php echo $this->alert['class'] ?>"><?php echo $this->alert['message'] ?></p>
 		</div>
 		<?php } ?>
-		<?php include( $content ) ?>
+		<?php include( $this->content ) ?>
 		<hr />
 		<footer>
 			<sub>Local Hoster 2014</sub>

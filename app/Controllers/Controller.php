@@ -10,7 +10,7 @@ class Controller extends Core {
 
 		$this->action = (isset($get['action'])) ? $get['action'] : 'index';
 
-		$this->viewpath = $this->controller;
+		$this->viewpath = strtolower( $this->controller );
 		$this->view = $this->action;
 
 		$id = (isset($get['id'])) ? $get['id'] : null;
@@ -32,7 +32,7 @@ class Controller extends Core {
 	}
 
 	public function render() {
-		$content = VIEW . $this->viewpath . DS . $this->view . '.php';
+		$this->content = VIEW . $this->viewpath . DS . $this->view . '.php';
 		include('app/Views/layouts/default.php');
 	}
 
