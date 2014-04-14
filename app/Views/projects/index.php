@@ -2,7 +2,7 @@
 	<thead>
 		<tr>
 			<?php
-			$keys = array('ServerName', 'ip', 'Name');
+			$keys = array('ServerName', 'ip', 'Group', 'Name');
 			foreach($keys as $key) {
 				$name = ucwords( str_replace('-', ' ', $key) );
 				echo "<th>$name</th>";
