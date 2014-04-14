@@ -128,6 +128,7 @@ class ProjectsController extends Controller {
 					$addProject = $projects[$key];
 					$Project->save(array(
 							'Group'=>'',
+							'ip'=>'127.0.0.1',
 							'Name'=>$addProject['ServerName'],
 							'DocumentRoot'=>$addProject['DocumentRoot'],
 							'ServerName'=>$addProject['ServerName'],
