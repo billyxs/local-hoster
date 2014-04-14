@@ -2,7 +2,7 @@
 	<thead>
 		<tr>
 			<?php
-			$keys = array('ServerName', 'Name');
+			$keys = array('ServerName', 'ip', 'Group', 'Name');
 			foreach($keys as $key) {
 				$name = ucwords( str_replace('-', ' ', $key) );
 				echo "<th>$name</th>";
@@ -18,7 +18,7 @@
 					<?php
 						$output = $project[$key];
 						if($key == "ServerName") {?>
-							<h4><a href="<?php echo $output ?>"><?php echo $output ?></a></h4>
+							<h4><a href="http://<?php echo $output ?>" target="_blank"><?php echo $output ?></a></h4>
 						<?php } else{
 							echo $output;
 						}
