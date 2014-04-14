@@ -8,6 +8,13 @@ class SettingsController extends Controller {
 
   public function before() {
     parent::before();
+
+    if($this->action !== 'index') {
+      // If settings are not ready, redirect to setup settings
+      $this->SettingModel = new SettingModel();
+      if(!$this->SettingModel->checkStatus() )
+        $this->redirect(array('controller'=>'settings', 'action'=>'index'));
+    }
   }
 
   /**
