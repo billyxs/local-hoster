@@ -31,8 +31,9 @@ class ProjectModel extends ModelJson {
         foreach($groupProjects as $key=>$project) {
           $DocumentRoot = $project['DocumentRoot'];
           $ServerName = $project['ServerName'];
+          $ip = (isset($project['ip']) && strlen(trim($project['ip']) ) > 0 ) ? $project['ip'] : '127.0.0.1';
 
-          $hostEntry = "127.0.0.1\t" . $ServerName . "\n";
+          $hostEntry = $ip . "\t" . $ServerName . "\n";
           $vhostEntry = "<VirtualHost *:80>\n"
             . "\tDocumentRoot $DocumentRoot\n"
             . "\tServerName $ServerName\n"
