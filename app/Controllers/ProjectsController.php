@@ -12,7 +12,6 @@ class ProjectsController extends Controller {
 
 		// If settings are not ready, redirect to setup settings
 		$this->SettingModel = new SettingModel();
-		echo $this->SettingModel->checkStatus();
 		if(!$this->SettingModel->checkStatus() )
 			$this->redirect(array('controller'=>'settings', 'action'=>'index'));
 	}
@@ -54,6 +53,9 @@ class ProjectsController extends Controller {
 		$project = $this->Project->getRecordById($id);
 
 		if($project) {
+			if(!isset($project['ip']))
+				$project['ip'] = '127.0.0.1';
+
 			$this->project = $project;
 			$this->tableKeys = array_keys( array_slice($this->project, 0, 1) );
 		} else if($id !== 'add') {
