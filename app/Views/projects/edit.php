@@ -15,6 +15,10 @@
 			<input type="text" name="data[Name]" value="<?php echo (isset($this->project) ) ? $this->project['Name'] : ''; ?>" class="form-control" placeholder="Project Name">
 		</div>
 		<div class="form-group">
+			<label>Project IP</label>
+			<input type="text" name="data[ip]" value="<?php echo (isset($this->project) ) ? $this->project['ip'] : '127.0.0.1'; ?>"  class="form-control" placeholder="local.project.com">
+		</div>
+		<div class="form-group">
 			<label>Host Name</label>
 			<input type="text" name="data[ServerName]" value="<?php echo (isset($this->project) ) ? $this->project['ServerName'] : ''; ?>"  class="form-control" placeholder="local.project.com">
 		</div>
