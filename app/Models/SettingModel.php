@@ -18,6 +18,27 @@ class SettingModel extends ModelJson {
   }
 
 
+  public function checkStatus() {
+    $settingStatus = $this->getStorageStatus('settings');
+    if($settingStatus['status'] !== 'good')
+      return false;
+
+    $projectStatus = $this->getStorageStatus('projects');
+    if($projectStatus['status'] !== 'good')
+      return false;
+
+    $vhostStatus = $this->getVhostsStatus();
+    if($vhostStatus['status'] !== 'good')
+      return false;
+
+    $hostStatus = $this->getHostsStatus();
+    if($hostStatus['status'] !== 'good')
+      return false;
+
+
+    return true;
+
+  }
 
 
   public function getHostsStatus() {

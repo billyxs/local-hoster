@@ -9,6 +9,12 @@ class ProjectsController extends Controller {
 
 	public function before() {
 		parent::before();
+
+		// If settings are not ready, redirect to setup settings
+		$this->SettingModel = new SettingModel();
+		echo $this->SettingModel->checkStatus();
+		if(!$this->SettingModel->checkStatus() )
+			$this->redirect(array('controller'=>'settings', 'action'=>'index'));
 	}
 
 	/**
