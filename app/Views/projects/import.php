@@ -1,5 +1,4 @@
 <form method="POST">
-	<button class="btn btn-danger">Run Import</button>
 	<table class="table">
 		<thead>
 			<tr>
@@ -28,4 +27,5 @@
 	<?php } ?>
 		</tbody>
 	</table>
+	<button class="btn btn-success">Run Import</button>
 </form>

@@ -40,6 +40,6 @@
 			<input type="text" class="form-control" value="<?php echo (isset($this->project) ) ? $this->project['DocumentRoot'] : ''; ?>"  name="data[DocumentRoot]" id="projectPath" />
 		</div>
 
-		<button class="btn btn-default"><?php echo (isset($this->project) ) ? 'Edit' : 'Add'; ?> Project</button>
+		<button class="btn btn-primary"><i class="fa fa-plus fa-lg"></i> <?php echo (isset($this->project) ) ? 'Edit' : 'Add'; ?> Project</button>
 	</form>
 </div>
