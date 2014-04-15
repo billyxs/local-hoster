@@ -7,7 +7,7 @@
 
 		<div class="form-group">
 			<label>Project Group</label>
-			<input type="text" name="data[Group]" value="<?php echo (isset($this->project) ) ? $this->project['Group'] : ''; ?>" class="form-control" placeholder="Project Name">
+			<input type="text" name="data[Group]" value="<?php echo (isset($this->project) ) ? $this->project['Group'] : ''; ?>" class="form-control" placeholder="Project Group">
 		</div>
 
 		<div class="form-group">
