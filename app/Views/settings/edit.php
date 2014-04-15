@@ -33,6 +33,6 @@
 
     </div>
 
-    <button class="btn btn-success">Save Settings</button>
+    <button class="btn btn-success"><i class="fa fa-cog fa-lg"></i> Save Settings</button>
   </form>
 </div>

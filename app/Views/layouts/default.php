@@ -9,7 +9,10 @@
 
 	<div class="container">
 		<header>
-			<h3>Local Hoster</h3>
+			<h3>Local Hoster
+				<a href="/" class="btn btn-primary bt-lg"><i class="fa fa-th-list fa-lg"></i> Projects</a>
+				<a href="?controller=settings" class="btn btn-default bt-lg"><i class="fa fa-cog fa-lg"></i> Settings</a>
+			</h3>
 			<?php
 				$thisName = str_replace('Controller', '', get_class($this) );
 				if( $thisName === 'Settings' ) {
