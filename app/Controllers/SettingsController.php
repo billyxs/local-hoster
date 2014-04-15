@@ -88,7 +88,7 @@ class SettingsController extends Controller {
       if($result)
         $this->alertSuccess($displayType . ' file has been saved');
       else
-        $this->alertError($displayType . ' could not be saved');
+        $this->alertError($displayType . ' could not be saved. Check file permissions');
     }
 
     $this->SettingModel = new SettingModel();

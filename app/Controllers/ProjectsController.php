@@ -74,8 +74,14 @@ class ProjectsController extends Controller {
 
 		if(is_numeric($id)) {
 			$this->Project = new ProjectModel();
-			if($this->Project->delete($id) ) {
-				$this->Project->sync();
+
+			// Don't delete the local.hoster project
+			$project = $this->Project->getRecordById($id);
+			$isLocalHoster = ($project && $project['ServerName'] === 'local.hoster.com');
+
+			// If the project is not local.hoster.com, and deletes successfully -> success
+			if( !$isLocalHoster && $this->Project->delete($id) ) {
+				//$this->Project->sync();
 				$this->alertSuccess("Deleted project");
 			} else {
 				$this->alertError("Sorry, we could not delete your project. Please check your settings");
