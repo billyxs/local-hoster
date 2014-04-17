@@ -1,2 +1,0 @@
-<a href="?controller=settings&action=setupHosts" class="btn btn-default bt-lg"><i class="fa fa-edit fa-lg"></i> Hosts Template</a>
-<a href="?controller=settings&action=setupVhosts" class="btn btn-default bt-lg"><i class="fa fa-edit fa-lg"></i> Vhosts Template</a>
