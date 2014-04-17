@@ -27,5 +27,5 @@
 	<?php } ?>
 		</tbody>
 	</table>
-	<button class="btn btn-success">Run Import</button>
+	<button class="btn btn-success btn-lg center-block"><i class="fa fa-pencil fa-lg"></i> Run Import</button>
 </form>
