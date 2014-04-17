@@ -17,5 +17,5 @@
     <textarea class="form-control lh-file" name="data[FileTemplate]"><?php echo $this->template; ?></textarea>
   </div>
   <br />
-  <button class="btn btn-primary"><i class="fa fa-edit fa-lg"></i> Save File Template</button>
+  <button class="btn btn-primary btn-lg center-block"><i class="fa fa-edit fa-lg"></i> Save File Template</button>
 </form>

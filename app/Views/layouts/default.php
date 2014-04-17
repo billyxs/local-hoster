@@ -8,19 +8,21 @@
 <body>
 
 	<div class="container">
-		<header>
-			<h3>Local Hoster
-				<a href="/" class="btn btn-primary bt-lg"><i class="fa fa-th-list fa-lg"></i> Projects</a>
-				<a href="?controller=settings" class="btn btn-default bt-lg"><i class="fa fa-cog fa-lg"></i> Settings</a>
-			</h3>
-			<?php
-				$thisName = str_replace('Controller', '', get_class($this) );
-				if( $thisName === 'Settings' ) {
-					include(ELEMENT . 'nav/settings.php');
-				} else {
-					include(ELEMENT . 'nav/projects.php');
-				}
-			?>
+		<header class="text-center">
+			<h4>Local Hoster</h4>
+			<div class="row">
+				<div class="col-md-6">
+					<a href="/" class="btn btn-primary bt-lg"><i class="fa fa-th-list fa-lg"></i> Projects</a>
+					<a href="?controller=projects&action=edit&id=add" class="btn btn-primary bt-lg"><i class="fa fa-plus fa-lg"></i> Add Project</a>
+					<a href="?controller=projects&action=import" class="btn btn-primary bt-lg"><i class="fa fa-upload fa-lg"></i> Project Import</a>
+				</div>
+				<div class="col-md-6">
+					<a href="?controller=settings" class="btn btn-default bt-lg"><i class="fa fa-cog fa-lg"></i> Settings</a>
+					<a href="?controller=settings&action=setupHosts" class="btn btn-default bt-lg"><i class="fa fa-edit fa-lg"></i> Hosts Template</a>
+					<a href="?controller=settings&action=setupVhosts" class="btn btn-default bt-lg"><i class="fa fa-edit fa-lg"></i> Vhosts Template</a>
+				</div>
+			</div>
+
 		</header>
 		<hr />
 		<?php if(isset($this->alert)) { ?>
@@ -49,6 +51,9 @@
 
 		$('#selectProjectPath').on('change', setProjectPath);
 
+		$('.project-folder .btn').on('click', function() {
+			$(this).parents('.project-folder').remove();
+		});
 
 		/**
 		 * Settings
@@ -56,7 +61,7 @@
 	  $('#addFolder').click(function() {
 	    var project = $('.project-folder:last').clone();
 	    console.log(project);
-	    $("#projectsGroup").append(project).append('<br />');
+	    $(this).before(project);
 	  });
 	</script>
 
