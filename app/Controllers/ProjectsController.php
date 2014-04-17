@@ -27,6 +27,13 @@ class ProjectsController extends Controller {
 		$this->SettingModel = new SettingModel();
 		$this->settings = $this->SettingModel->getUserSettings();
 
+
+		usort($this->projects, function($a, $b) {
+			// sort by this key
+			$sort = "ServerName";
+			return strcmp($a[$sort], $b[$sort]);
+		});
+
 		$this->tableKeys = array_keys( array_slice($this->projects, 0, 1) );
 
 		if(isset($_REQUEST['alertSuccess']) ) {
