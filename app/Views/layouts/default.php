@@ -9,9 +9,7 @@
 
 	<div class="container">
 		<header class="text-center">
-			<h4>
-				<span> Local Hoster </span>
-			</h4>
+			<h4>Local Hoster</h4>
 			<div class="row">
 				<div class="col-md-6">
 					<a href="/" class="btn btn-primary bt-lg"><i class="fa fa-th-list fa-lg"></i> Projects</a>
@@ -53,6 +51,9 @@
 
 		$('#selectProjectPath').on('change', setProjectPath);
 
+		$('.project-folder .btn').on('click', function() {
+			$(this).parents('.project-folder').remove();
+		});
 
 		/**
 		 * Settings
@@ -60,7 +61,7 @@
 	  $('#addFolder').click(function() {
 	    var project = $('.project-folder:last').clone();
 	    console.log(project);
-	    $("#projectsGroup").append(project).append('<br />');
+	    $(this).before(project);
 	  });
 	</script>
 
