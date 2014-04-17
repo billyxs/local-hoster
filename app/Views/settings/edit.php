@@ -1,5 +1,6 @@
-<div class="row">
-  <form role="form" method="POST" class="col-md-6">
+<form role="form" method="POST" class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-4">
     <div class="form-group <?php echo ($this->hostsStatus['status'] === "good") ? 'has-success' : 'has-error' ?>">
       <label>Hosts Path</label>
 
@@ -23,7 +24,8 @@
 
       <input type="text" name="data[vhosts-path]" value="<?php echo (isset($this->settings) ) ? $this->settings['vhosts-path'] : ''; ?>" class="form-control" placeholder="/etc/apache2/extra/httpd-vhosts.conf">
     </div>
-
+  </div>
+  <div class="col-md-4">
     <div class="form-group" id="projectsGroup">
       <label>Projects Folder</label><span id="addFolder" class="btn btn-sm btn-success">+ Add Folder</span>
       <?php foreach($this->projectPaths as $projectFolder) { ?>
@@ -32,7 +34,10 @@
       <?php } ?>
 
     </div>
+  </div>
+  <div class="col-md-2"></div>
 
     <button class="btn btn-success"><i class="fa fa-cog fa-lg"></i> Save Settings</button>
-  </form>
-</div>
+
+  </div>
+</form>
