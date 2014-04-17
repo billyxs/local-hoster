@@ -1,3 +1,23 @@
 textarea.lh-file {
   height: 400px !important;
 }
+
+.project-folder input {
+  width: 80%;
+  display: inline-block;
+  margin-bottom: 20px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.project-folder .btn {
+  margin-left: -5px;
+  height: 34px;
+  vertical-align: top;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.project-folder .fa {
+  line-height: normal;
+}

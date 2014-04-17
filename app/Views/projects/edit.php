@@ -5,8 +5,7 @@
 			<input type="hidden" value="<?php echo $this->project['id']; ?>" name="data[id]" />
 		<?php } ?>
 
-		<div class="col-md-2"></div>
-		<div class="col-md-4">
+		<div class="col-md-4 col-md-push-2">
 			<h4 class="text-danger">Required Fields</h4>
 			<div class="form-group">
 				<label>Project IP</label>
@@ -34,7 +33,7 @@
 				<input type="text" class="form-control" value="<?php echo (isset($this->project) ) ? $this->project['DocumentRoot'] : ''; ?>"  name="data[DocumentRoot]" id="projectPath" />
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 col-md-push-2">
 			<h4 class="text-muted">Optional Fields</h4>
 			<div class="form-group">
 				<label>Project Group</label>
@@ -45,7 +44,7 @@
 				<input type="text" name="data[Name]" value="<?php echo (isset($this->project) ) ? $this->project['Name'] : ''; ?>" class="form-control" placeholder="Project Name">
 			</div>
 		</div>
-		<div class="col-md-2"></div>
+
 	</div>
 	<button class="btn btn-success btn-lg center-block"><i class="fa fa-plus fa-lg"></i> <?php echo (isset($this->project) ) ? 'Edit' : 'Add'; ?> Project</button>
 
