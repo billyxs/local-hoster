@@ -26,12 +26,8 @@
 				</td>
 			<?php }?>
 			<td>
-				<form action="?controller=projects&action=delete" method="POST">
 					<a href="?controller=projects&action=edit&id=<?php echo $project['id']; ?>" class="btn btn-success"><i class="fa fa-edit fa-lg"></i> Edit</a>
 					<a href="?controller=projects&action=delete&id=<?php echo $project['id']; ?>" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete</a>
-
-					<!-- <input type="hidden" name="data[project][id]" value="<?php echo $project['id']; ?>" /> -->
-					<!-- <button class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete</button> -->
 				</form>
 			</td>
 		</tr>

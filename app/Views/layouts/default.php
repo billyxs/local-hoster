@@ -9,7 +9,7 @@
 
 	<div class="container">
 		<header class="text-center">
-			<h4>Local Hoster</h4>
+			<h3>Local Hoster</h3>
 			<div class="row">
 				<div class="col-md-6">
 					<a href="/" class="btn btn-primary bt-lg"><i class="fa fa-th-list fa-lg"></i> Projects</a>
@@ -40,7 +40,14 @@
 
 	<script type="text/javascript">
 		/**
-		 * Project Path
+		 * Add Project function 
+		 * Update project path input from dropdown
+		 */
+		$('#selectProjectPath').on('change', setProjectPath);
+
+		/**
+		 * Settings functions 
+		 * 
 		 */
 		var setProjectPath = function() {
 			console.log("select path");
@@ -49,15 +56,12 @@
 			$('#projectPath').val( project );
 		}
 
-		$('#selectProjectPath').on('change', setProjectPath);
-
-		$('.project-folder .btn').on('click', function() {
+		// bind trash can to delete project entry
+		$('#projectsGroup').delegate('.project-folder .btn', 'click', function() {
 			$(this).parents('.project-folder').remove();
 		});
 
-		/**
-		 * Settings
-		 */
+		// add a new project for settings
 	  $('#addFolder').click(function() {
 	    var project = $('.project-folder:last').clone();
 	    console.log(project);
