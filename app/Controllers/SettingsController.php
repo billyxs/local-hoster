@@ -13,7 +13,7 @@ class SettingsController extends Controller {
       // If settings are not ready, redirect to setup settings
       $this->SettingModel = new SettingModel();
       if(!$this->SettingModel->checkStatus() )
-        $this->redirect(array('controller'=>'settings', 'action'=>'index'));
+        $this->redirect(array('controller'=>'settings'));
     }
   }
 

@@ -13,7 +13,7 @@ class ProjectsController extends Controller {
 		// If settings are not ready, redirect to setup settings
 		$this->SettingModel = new SettingModel();
 		if(!$this->SettingModel->checkStatus() )
-			$this->redirect(array('controller'=>'settings', 'action'=>'index'));
+			$this->redirect(array('controller'=>'settings'));
 	}
 
 	/**
@@ -27,7 +27,25 @@ class ProjectsController extends Controller {
 		$this->SettingModel = new SettingModel();
 		$this->settings = $this->SettingModel->getUserSettings();
 
+
+		usort($this->projects, function($a, $b) {
+			// sort by this key
+			$sort = "ServerName";
+			return strcmp($a[$sort], $b[$sort]);
+		});
+
 		$this->tableKeys = array_keys( array_slice($this->projects, 0, 1) );
+
+		if(isset($_REQUEST['alertSuccess']) ) {
+			$this->alertSuccess($_REQUEST['alertSuccess']);
+		} else if(isset($_REQUEST['alertError']) ) {
+			$this->alertError($_REQUEST['alertError']);
+		}
+	}
+
+	public function add() {
+		$this->edit('add');
+		$this->view = 'edit';
 	}
 
 	/**
@@ -81,14 +99,17 @@ class ProjectsController extends Controller {
 
 			// If the project is not local.hoster.com, and deletes successfully -> success
 			if( !$isLocalHoster && $this->Project->delete($id) ) {
-				//$this->Project->sync();
-				$this->alertSuccess("Deleted project");
-			} else {
-				$this->alertError("Sorry, we could not delete your project. Please check your settings");
-			}
+				$this->Project->sync();
+				// $this->alertSuccess('Your project ' . $project['Name'] . ' was deleted successfully.');
+				// $this->redirect( array('controller'=>'projects') );
+				$this->redirect(array('controller'=>'projects', 'alertSuccess'=>'Your project ' . $project['Name'] . ' was deleted successfully.') );
+				return;
+			} 
 		}
 
-		$this->redirect(array('controller'=>'projects', 'action'=>'index') );
+		$this->redirect( array('controller'=>'projects', 'alertError'=>'Sorry, we could not delete your project. Please check your settings') );
+		// $this->alertError('Sorry, we could not delete your project. Please check your settings');
+		// $this->redirect( array('controller'=>'projects') );
 	}
 
 
