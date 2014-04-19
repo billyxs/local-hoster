@@ -11,12 +11,12 @@
 		<header class="text-center">
 			<h3>Local Hoster</h3>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-5 col-md-push-1">
 					<a href="/" class="btn btn-primary bt-lg"><i class="fa fa-th-list fa-lg"></i> Projects</a>
 					<a href="?controller=projects&action=edit&id=add" class="btn btn-primary bt-lg"><i class="fa fa-plus fa-lg"></i> Add Project</a>
 					<a href="?controller=projects&action=import" class="btn btn-primary bt-lg"><i class="fa fa-upload fa-lg"></i> Project Import</a>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-7">
 					<a href="?controller=settings" class="btn btn-default bt-lg"><i class="fa fa-cog fa-lg"></i> Settings</a>
 					<a href="?controller=settings&action=setupHosts" class="btn btn-default bt-lg"><i class="fa fa-edit fa-lg"></i> Hosts Template</a>
 					<a href="?controller=settings&action=setupVhosts" class="btn btn-default bt-lg"><i class="fa fa-edit fa-lg"></i> Vhosts Template</a>
@@ -26,8 +26,8 @@
 		</header>
 		<hr />
 		<?php if(isset($this->alert)) { ?>
-		<div>
-			<p class="alert bg-<?php echo $this->alert['class'] ?>"><?php echo $this->alert['message'] ?></p>
+		<div class="col-md-12">
+			<p class="col-md-8 col-md-push-2 alert bg-<?php echo $this->alert['class'] ?>"><?php echo $this->alert['message'] ?></p>
 		</div>
 		<?php } ?>
 		<?php include( $this->content ) ?>
@@ -40,14 +40,14 @@
 
 	<script type="text/javascript">
 		/**
-		 * Add Project function 
+		 * Add Project function
 		 * Update project path input from dropdown
 		 */
 		$('#selectProjectPath').on('change', setProjectPath);
 
 		/**
-		 * Settings functions 
-		 * 
+		 * Settings functions
+		 *
 		 */
 		var setProjectPath = function() {
 			console.log("select path");
