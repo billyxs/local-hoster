@@ -25,8 +25,13 @@ class SettingsController extends Controller {
     $this->SettingModel = new SettingModel();
 
     if(isset($this->data) ) {
+        // we only store one record for settings, at id zero
       $this->data['id'] = 0;
-      $this->SettingModel->save($this->data);
+      if($this->SettingModel->save($this->data) ) {
+        $this->alertSuccess('Your settings have been saved');
+      } else {
+        $this->alertError('Sorry, we could not save your settings. Make sure file permissions are cleared for local hoster to edit your files.');
+      }
     }
 
     $this->settingStorageStatus = $this->SettingModel->getStorageStatus('settings');
