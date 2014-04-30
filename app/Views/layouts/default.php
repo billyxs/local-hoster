@@ -38,36 +38,7 @@
 	</div>
 	<script src="/assets/js/jquery-1.11.0.min.js"></script>
 
-	<script type="text/javascript">
-		/**
-		 * Add Project function
-		 * Update project path input from dropdown
-		 */
-		$('#selectProjectPath').on('change', setProjectPath);
-
-		/**
-		 * Settings functions
-		 *
-		 */
-		var setProjectPath = function() {
-			console.log("select path");
-			var project = $('#selectProjectPath').val();
-			console.log(project);
-			$('#projectPath').val( project );
-		}
-
-		// bind trash can to delete project entry
-		$('#projectsGroup').delegate('.project-folder .btn', 'click', function() {
-			$(this).parents('.project-folder').remove();
-		});
-
-		// add a new project for settings
-	  $('#addFolder').click(function() {
-	    var project = $('.project-folder:last').clone();
-	    console.log(project);
-	    $(this).before(project);
-	  });
-	</script>
+	<script src="/assets/js/scripts.js"></script>
 
 </body>
 </html>
