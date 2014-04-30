@@ -30,6 +30,7 @@
 					}
 					?>
 				</select>
+				<br />
 				<input type="text" class="form-control" value="<?php echo (isset($this->project) ) ? $this->project['DocumentRoot'] : ''; ?>"  name="data[DocumentRoot]" id="projectPath" />
 			</div>
 		</div>
